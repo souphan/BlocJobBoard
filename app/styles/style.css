@@ -1,0 +1,10 @@
+.post-job-button {
+	display: block;
+	height: 80px;
+	width: 160px;
+	background: #FF4500;
+	border: 2px solid rgba(33, 68, 72, 0.59);
+    color: #FFFFFF;
+    text-align: center;
+    font: bold 2.2em/80px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
