@@ -1,5 +1,3 @@
-</div>
-
 <ul class="user-dropdown link-list is-dropdown" id="user-dropdown">
   
     <li class="dropdown-bloc">
@@ -51,4 +49,30 @@
     </a>
   </li>
 </ul>
+
+<form>
+ <strong>Job Title</strong><br>
+  <input type="text" name="jobtitle"><br>
+ <strong>Company</strong><br>
+  <input type="text" name="company"><br>
+ <strong>Job Type </strong><br>    
+  <input type="radio" name="jobtype" value="full-time" checked> Full-Time<br>      
+  <input type="radio" name="jobtype" value="all-inclusive"> All-inclusive<br>
+  <input type="radio" name="jobtype" value="contract"> Contract<br>
+  <input type="radio" name="jobtype" value="part-time" checked> Part-time<br>      
+  <input type="radio" name="jobtype" value="freelance"> Freelance<br>
+  <input type="radio" name="jobtype" value="Internship"> Internship<br>
+ <strong>Location</strong> <br>
+
+<input type="radio" name="location" ng-click="toggle()"> On Site<br>
+<p ng-show="myVar">
+  <input type=text ng-model="onsite"> Street Address<br>
+  <input type=text ng-model="onsite"> City<br>
+  <input type=text ng-model="onsite"> State<br>
+  <input type=text ng-model="onsite"> Postal Code<br>
+    {{firstName + " " + lastName}}
+</p>
+<input type="radio" name="location" ng-click="toggle()"> Remote <br>
+<p ng-hide="myVar">
+
 <div ui-view></div>
