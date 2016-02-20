@@ -61,10 +61,10 @@
   <input type="radio" name="jobtype" value="contract"> Contract<br>
   <input type="radio" name="jobtype" value="part-time" checked> Part-time<br>      
   <input type="radio" name="jobtype" value="freelance"> Freelance<br>
-  <input type="radio" name="jobtype" value="Internship"> Internship<br>
+  <input type="radio" name="jobtype" value="internship"> Internship<br>
  <strong>Location</strong> <br>
-
-<input type="radio" name="location" ng-click="toggle()"> On Site<br>
+    
+<input type="radio" name="location" ng-click="show = !show"> On Site<br>
 <p ng-show="myVar">
   <input type=text ng-model="onsite"> Street Address<br>
   <input type=text ng-model="onsite"> City<br>
@@ -72,9 +72,7 @@
   <input type=text ng-model="onsite"> Postal Code<br>
     {{firstName + " " + lastName}}
 </p>
-<input type="radio" name="location" ng-click="toggle()"> Remote <br>
-<p ng-hide="myVar">
-
+    
 <!--    http://stackoverflow.com/questions/16660826/show-hidden-div-on-ng-click-within-ng-repeat-->
 <!--    http://fdietz.github.io/recipes-with-angular-js/introduction/responding-to-click-events-using-controllers.html-->
 <div ui-view></div>

@@ -7,7 +7,6 @@ blocJobs.config(function($stateProvider, $urlRouterProvider){
      $stateProvider
      .state('landing', {
          url: '/',
-         controller: 'LandingCtrl',
          templateUrl: '/templates/landing.html'
      })
     .state('job-post', {
