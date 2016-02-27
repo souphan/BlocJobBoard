@@ -1,54 +1,5 @@
-<ul class="user-dropdown link-list is-dropdown" id="user-dropdown">
-  
-    <li class="dropdown-bloc">
-    <a href="#">
-      Bloc
-    </a>
-  </li>
+<navi-menu></navi-menu>
 
-  <li class="dropdown-front">
-    <a href="#">
-      Frontend Web Development
-    </a>
-  </li>
-
-  <li class="dropdown-refer">
-    <a href="#">
-      Refer a Friend
-    </a>
-  </li>
-
-  <li class="dropdown-roadmaps">
-    <a href="#">
-      Roadmaps
-    </a>
-  </li>
-
-
-  <li class="messages-btn">
-    <a href="#">
-      Messages
-    </a>
-  </li>
-
-  <li class="schedule-btn">
-    <a href="#">
-      Schedule
-    </a>
-  </li>
-
-  <li class="dropdown-account">
-    <a href="#">
-      Account
-</a>  </li>
-
-
-  <li class="logout-btn">
-    <a href="#">
-      Log Out
-    </a>
-  </li>
-</ul>
 
 <form>
  <strong>Job Title</strong><br>
@@ -61,20 +12,33 @@
   <input type="radio" name="jobtype" value="contract"> Contract<br>
   <input type="radio" name="jobtype" value="part-time" checked> Part-time<br>      
   <input type="radio" name="jobtype" value="freelance"> Freelance<br>
-  <input type="radio" name="jobtype" value="Internship"> Internship<br>
+  <input type="radio" name="jobtype" value="internship"> Internship<br>
  <strong>Location</strong> <br>
-
+    
 <input type="radio" name="location" ng-click="toggle()"> On Site<br>
 <p ng-show="myVar">
   <input type=text ng-model="onsite"> Street Address<br>
   <input type=text ng-model="onsite"> City<br>
   <input type=text ng-model="onsite"> State<br>
   <input type=text ng-model="onsite"> Postal Code<br>
-    {{firstName + " " + lastName}}
 </p>
-<input type="radio" name="location" ng-click="toggle()"> Remote <br>
-<p ng-hide="myVar">
 
-<!--    http://stackoverflow.com/questions/16660826/show-hidden-div-on-ng-click-within-ng-repeat-->
-<!--    http://fdietz.github.io/recipes-with-angular-js/introduction/responding-to-click-events-using-controllers.html-->
+<input type="radio" name="location" value="remote"> Remote<br>
+
+ <strong>Job Description</strong> <br>
+ <strong>Location</strong> <br>
+    
+<ul>
+  <li ng-repeat="item in items">
+      <input type="text" ng-model="item.content" />
+      <a ng-click="removeItem()" style="color:red;">[x]</a>
+  </li>
+</ul>
+<form ng-submit="addItem()">
+    <input type="text" ng-model="itemContent" />
+    <button type="submit">push</button>
+    <input class="btn btn-primary" type="submit" ui-sref="postings" value="Submit Job">
+</form>
+</form>
 <div ui-view></div>
+</div>
