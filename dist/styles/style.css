@@ -1,3 +1,9 @@
+wrapper {
+    max-width: 1040px;
+    width: 90%;
+    border: 2px   #000
+}
+
 .post-job-button {
 	display: block;
 	height: 80px;

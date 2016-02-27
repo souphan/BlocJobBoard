@@ -1,10 +1,4 @@
-blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {  
-    
-    $scope.myVar = false;
-    $scope.toggle = function() {
-        $scope.myVar = !$scope.myVar;
-    };
-    
+blocJobs.controller('postingsCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {      
  $scope.safeApply = function(fn) {
         var phase = this.$root.$$phase;
         if(phase == '$apply' || phase == '$digest') {
@@ -66,37 +60,4 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', function($scope,
     }, true);
 
 
-  
 }]);
-
-
-//var myApp = angular.module("myapp", ["firebase"]);
-//
-//myApp.controller("MyController", ["$scope", "$firebaseArray",
-//function($scope, $firebaseArray) {
-//  //CREATE A FIREBASE REFERENCE
-//  var ref = new Firebase("https://keodo-todo-list.firebaseio.com/");
-//
-//  // GET MESSAGES AS AN ARRAY
-//  $scope.messages = $firebaseArray(ref);
-//
-//  //ADD MESSAGE METHOD
-//  $scope.addMessage = function(e) {
-//
-//    //LISTEN FOR RETURN KEY
-//    if (e.keyCode === 13 && $scope.msg) {
-//      //ALLOW CUSTOM OR ANONYMOUS USER NAMES
-//      var name = $scope.name || "anonymous";
-//
-//      //ADD TO FIREBASE
-//      $scope.messages.$add({
-//        from: name,
-//        body: $scope.msg
-//      });
-//
-//      //RESET MESSAGE
-//      $scope.msg = "";
-//    }
-//  }
-//}
-//]);
