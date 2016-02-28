@@ -3,14 +3,26 @@ wrapper {
     width: 90%;
     border: 2px   #000
 }
-
-.post-job-button {
-	display: block;
-	height: 80px;
-	width: 160px;
-	background: #FF4500;
-	border: 2px solid rgba(33, 68, 72, 0.59);
-    color: #FFFFFF;
-    text-align: center;
-    font: bold 2.2em/80px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+.container-fluid {
+    background-color: #333333;
 }
+.navbar-brand {
+    color: #f2f2f2;
+}
+.navbar-front {
+    color: #f2f2f2;
+}
+.dropdown-toggle, .dropdown-menu, .navbar-mess, .navbar-sched, .navbar-acc, .navbar-log {
+    color: #f2f2f2;
+}
+.btn-primary {
+    background-color: #F15A24;
+}
+body {
+    background-color: #f2f2f2;
+}
+/*background: #f2f2f2
+#333333
+
+orange #F15A24
+*/

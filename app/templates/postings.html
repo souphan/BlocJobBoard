@@ -2,9 +2,24 @@
 
 <h2>Job Posting Here</h2>
 
-<ul>
-  <li ng-repeat="item in items">
-      <input type="text" ng-model="item.content" />
-      <a ng-click="removeItem()" style="color:red;">[x]</a>
-  </li>
-</ul>
+<h4 ng-show="(todos | filter:{status: 'complete'}).length">Completed</h4>
+
+<div ng-repeat="todo in todos | filter:{status: 'complete'}"
+     class="row list-item bg-success">
+
+    <div class="col-md-6">
+
+        <!--TODO LABEL-->
+        <span>{{todo.name}}</span>
+    </div>
+    <div class="col-md-6 text-right">
+
+        <!--DELETE TODO BUTTON-->
+        <a class="btn btn-danger"
+           ng-click="removeTodo($index, todo)">
+            <i class="glyphicon glyphicon-remove"></i> Remove
+        </a>
+
+    </div>
+
+</div>
