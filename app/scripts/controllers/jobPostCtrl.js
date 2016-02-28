@@ -20,16 +20,32 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', function($scope,
 
         // CREATE A UNIQUE ID
         var timestamp = new Date().valueOf();
-
+        
         $scope.todos.$add({
             id: timestamp,
-            name: $scope.todoName,
+            name: $scope.todoName1,
             status: 'pending'
         });
 
-        $scope.todoName = "";
+        $scope.todos.$add({
+            id: timestamp,
+            name: $scope.todoName2,
+            status: 'pending'
+        });
+        
+        $scope.todos.$add({
+            id: timestamp,
+            name: $scope.todoName3,
+            status: 'pending'
+        });
+
+        $scope.todoName1 = "";
+        $scope.todoName2 = "";
+        $scope.todoName3 = "";
 
     };
+    
+//    Need to separate addtodo() function so that they can act independently
       
         // MARK TODO AS IN PROGRESS METHOD
     $scope.startTodo = function (index, todo) {

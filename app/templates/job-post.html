@@ -6,11 +6,25 @@
     <div class="form-group">
       <div class="col-xs-6">
         <label for="ex1">Job Title</label>
-        <input class="form-control input-lg" id="ex1" type="text" placeholder="Awkwardly Good Developer">
+           <input type="text"
+               name="todoNameField"
+               ng-model="todoName1"
+               placeholder="Awkwardly Good Developer"
+               required ng-minlength="3"
+               class="form-control input-lg"
+               ng-keyup="($event.keyCode == 13 && todoName.length > 2) ? addItem() : return"
+                />
       </div>
       <div class="col-xs-6">
         <label for="ex2">Company</label>
-        <input class="form-control input-lg" id="ex2" type="text" placeholder="Orange">
+            <input type="text"
+               name="todoNameField"
+               ng-model="todoName2"
+               placeholder="Orange"
+               required ng-minlength="3"
+               class="form-control input-lg"
+               ng-keyup="($event.keyCode == 13 && todoName.length > 2) ? addItem() : return"
+                />  
       </div>
     </div>
   </form>
@@ -40,35 +54,37 @@
             <p ng-show="myVarTwo"  class="col-xs-6">
                 <input class="form-control input-lg" type=text ng-model="link" placeholder="http://your-job.com/jobs/job.html"><br>
             </p>
-
-        <input type="radio" name="description" value="description"> Post Job Description<br>
-            <div class="col-xs-6">
-            <input class="form-control input-lg" type=text ng-model="onsite"><br>
-            </div>
-
-    <strong>Location</strong> <br>
+    
+<form role="form" class="row">
+    <div class="form-group">
+      <div class="col-xs-6">
+        <p1>Input Job Description</p1>
+           <input type="text"
+               name="todoNameField"
+               ng-model="todoName3"
+               placeholder="Code Monkey"
+               required ng-minlength="3"
+               class="form-control input-lg"
+               ng-keyup="($event.keyCode == 13 && todoName.length > 2) ? addItem() : return"
+                />
+      </div>
+    </div>
+</form>
     
 <!--ADD ITEM FORM-->
 <form name="todoForm">
 
     <div>
-        <input type="text"
-               name="todoNameField"
-               ng-model="todoName"
-               placeholder="Add new task"
-               required ng-minlength="3"
-               class="form-control"
-               ng-keyup="($event.keyCode == 13 && todoName.length > 2) ? addItem() : return"
-                />
-
         <button ng-click="addTodo()"
                 ng-hide="myForm.todoNameField.$invalid"
                 class="btn btn-primary" type="button"
-                >Save Todo
+                >Submit Job
         </button>
+        <input class="btn btn-primary" type="submit" ui-sref="postings" value="View Job Postings">
     </div>
 
 </form>
+
 
 <!--TODO LIST-->
 
@@ -93,6 +109,6 @@
 </div>
 
 </div>
-    <input class="btn btn-primary" type="submit" ui-sref="postings" value="Submit Job">
+   
 </div>
 <div ui-view></div>
