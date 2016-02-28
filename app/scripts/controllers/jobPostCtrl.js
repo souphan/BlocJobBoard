@@ -1,71 +1,58 @@
 blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {  
     
     $scope.myVar = false;
+    $scope.myVarTwo = false;
     $scope.toggle = function() {
         $scope.myVar = !$scope.myVar;
     };
     
- $scope.safeApply = function(fn) {
-        var phase = this.$root.$$phase;
-        if(phase == '$apply' || phase == '$digest') {
-            if(fn && (typeof(fn) === 'function')) {
-                fn();
-            }
-        } else {
-            this.$apply(fn);
-        }
+    $scope.toggleTwo = function() {
+    $scope.myVarTwo = !$scope.myVarTwo;
     };
     
-    //CREATE A FIREBASE REFERENCE
-    $scope.items = [];
-    var firebase = new Firebase("https://keodo-todo-list.firebaseio.com/");
-    $scope.addItem = function () {
-        firebase.push({"content": $scope.itemContent})
-        $scope.itemContent = '';
-    };
-    $scope.removeItem = function () {
-        var item = this.item;
-        firebase.child(item[".key"]).remove();
-    };
-    firebase.on("child_added", function(addedSnap) {
-        var item = {
-            ".key": addedSnap.key(),
-            "content": addedSnap.val().content
-        };
-        $scope.safeApply(function() {
-            $scope.items.push(item);
-        });
-        firebase.child(addedSnap.key()).on("value", function(valueSnap) {
-            $scope.safeApply(function() {
-                if (valueSnap.val()) {
-                    item.content = valueSnap.val().content;
-                } else {
-                    var idx = -1;
-                    $scope.items.forEach(function(e, i) {
-                        if (e[".key"] == valueSnap.key()) {
-                            idx = i;
-                            return;
-                        }
-                    });
-                    if (idx > -1) {
-                        $scope.items.splice(idx, 1);
-                    }
-                }
-            });
-        });
-    });
-    $scope.$watch("items", function(newItems, oldItems) {
-        // TODO: How do I check which item is updated in a better way?
-        newItems.forEach(function(newItem) {
-            oldItems.forEach(function(oldItem) {
-                if (newItem[".key"] == oldItem[".key"] && newItem.content != oldItem.content) {
-                    firebase.child(newItem[".key"]).update({"content": newItem.content});
-                }
-            });
-        });
-    }, true);
+    var todosRef = new Firebase('https://keodo-todo-list.firebaseio.com/');
 
+    // GET TODOS AS AN ARRAY
+    $scope.todos = $firebaseArray(todosRef);
 
+    // ADD TODO ITEM METHOD
+    $scope.addTodo = function () {
+
+        // CREATE A UNIQUE ID
+        var timestamp = new Date().valueOf();
+
+        $scope.todos.$add({
+            id: timestamp,
+            name: $scope.todoName,
+            status: 'pending'
+        });
+
+        $scope.todoName = "";
+
+    };
+      
+        // MARK TODO AS IN PROGRESS METHOD
+    $scope.startTodo = function (index, todo) {
+
+        // CHECK THAT ITEM IS VALID
+        if (todo.id === undefined)return;
+
+        // UPDATE STATUS TO IN PROGRESS AND SAVE
+        todo.status = 'complete';
+        $scope.todos.$save(todo);
+
+    };
+      
+        // REMOVE TODO ITEM METHOD
+    $scope.removeTodo = function (index, todo) {
+        
+        // CHECK THAT ITEM IS VALID
+        if (todo.id === undefined)return;
+
+        // FIREBASE: REMOVE ITEM FROM LIST
+        $scope.todos.$remove(todo);
+
+    };  
   
 }]);
 
