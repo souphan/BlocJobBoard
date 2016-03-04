@@ -88,9 +88,9 @@
 
 <!--TODO LIST-->
 
-<h4 ng-show="(todos | filter:{status: 'pending'}).length">Pending</h4>
+<h4 ng-show="(todos | filter:{status: ''}).length">Job Title</h4>
 
-<div ng-repeat="todo in todos | filter:{status: 'pending'}"
+<div ng-repeat="todo in todos | filter:{status: ''}"
      class="row list-item">
 
     <div class="col-md-6">
@@ -108,6 +108,44 @@
 
 </div>
 
+<h4 ng-show="(todos | filter:{status: ''}).length">Company</h4>
+
+<div ng-repeat="todo in todos | filter:{status: ''}"
+     class="row list-item">
+
+    <div class="col-md-6">
+
+        <!--TODO LABEL-->
+        <span>{{todo.name}}</span>
+    </div>
+    <div class="col-md-6 text-right">
+        <!--START TODO BUTTON-->
+        <a class="btn btn-warning"
+           ng-click="startTodo($index, todo)">
+            Complete
+        </a>
+    </div>
+
+</div>
+<h4 ng-show="(todos | filter:{status: ''}).length">Job Description</h4>
+
+<div ng-repeat="todo in todos | filter:{status: ''}"
+     class="row list-item">
+
+    <div class="col-md-6">
+
+        <!--TODO LABEL-->
+        <span>{{todo.name}}</span>
+    </div>
+    <div class="col-md-6 text-right">
+        <!--START TODO BUTTON-->
+        <a class="btn btn-warning"
+           ng-click="startTodo($index, todo)">
+            Complete
+        </a>
+    </div>
+
+</div>    
 </div>
    
 </div>
