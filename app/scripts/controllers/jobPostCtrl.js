@@ -36,10 +36,10 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', function($scope,
         $scope.companyName = "";
         $scope.jobDescription = "";
         $scope.fullTime = "";
-        $scope.partTime = "Part Time";
-        $scope.contract = "Contract";
-        $scope.freelance = "Freelance";
-        $scope.internship = "Internship";
+        $scope.partTime = "";
+        $scope.contract = "";
+        $scope.freelance = "";
+        $scope.internship = "";
     };
     
     $scope.myData.on('value', function(snapshot) {
