@@ -1,0 +1,35 @@
+<navi-menu></navi-menu>
+<div class="container">
+<h2>Job Postings Here</h2>
+<input class="btn btn-primary" type="submit" ui-sref="job-post" value="Back to Post">
+
+    <table class="table table-bordered">
+    
+        <thead>
+            <th>Job Title</th>
+            <th>Company Name</th>
+            <th>Job Description(or URL)</th>
+            <th>Job Type</th>
+            <th>Job Type</th>
+            <th>Job Type</th>
+            <th>Job Type</th>
+            <th>Job Type</th>
+        </thead>
+        
+        <tbody ng-repeat="job in jobs">
+        
+        <tr>
+            <td>{{job.jobTitle}}</td>
+            <td>{{job.companyName}}</td>
+            <td>{{job.jobDescription}}</td>
+            <td>{{job.fullTime}}</td>
+            <td>{{job.partTime}}</td>
+            <td>{{job.contract}}</td>
+            <td>{{job.freelance}}</td>
+            <td>{{job.internship}}</td>
+        </tr>
+    
+    </tbody>
+        
+    </table>
+    </div>

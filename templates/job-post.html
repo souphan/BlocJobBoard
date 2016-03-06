@@ -1,0 +1,227 @@
+<navi-menu></navi-menu>
+
+<div class="container">
+    <div class="form-group">
+        <div class="col-md-6">
+            <label>Job Title</label>
+            <input class="form-control input-lg" type="text" id="jobTitle" ng-model="jobTitle" placeholder="Awkwardly Good Developer">
+        </div>
+        <div class="col-md-6">
+            <label>Company Name</label>
+            <input class="form-control input-lg" type="text" id="companyName" ng-model="companyName" placeholder="Orange"><br>
+        </div>
+       <div class="col-md-6">
+           <label>Job Type</label><br>    
+                <input type="radio" name="fullTime" id="fullTime" ng-values="fullTime"> Full-Time<br>      
+                <input type="radio" name="contract" id="contract" ng-values="contract"> Contract<br>
+                <input type="radio" name="partTime" id="partTime" ng-values="partTime"> Part-Time<br>      
+                <input type="radio" name="freelance" id="freelance" ng-values="freelance"> Freelance<br>
+                <input type="radio" name="internship" id="internship" ng-values="internship"> Internship<br>
+        </div>
+        <div class="col-md-6">
+            <label>Location</label> <br>
+                <input type="radio" name="onSite" id="onSite" ng-click="toggle()"> On Site<br>
+                    <p ng-show="myVar">
+                      <input type=text ng-model="streetAddress"> Street Address<br>
+                      <input type=text ng-model="city"> City<br>
+                      <input type=text ng-model="state"> State<br>
+                      <input type=text ng-model="postalCode"> Postal Code<br>
+                    </p>
+   
+                <input type="radio" name="remote" id="remote"> Remote<br>
+        </div>
+        <div class="col-md-6">
+            <label>Job Description(or URL)</label>
+            <input class="form-control input-lg" type="text" id="jobDescription" ng-model="jobDescription" placeholder="http://your-job.com/jobs/job.html"><br>
+        </div>
+    <button class="btn btn-primary" ng-click="saveJobs()">
+        Post <span class="glyphicon glyphicon-ok"></span>
+    </button>
+    <input class="btn btn-primary" type="submit" ui-sref="postings" value="View Job Postings">
+
+    <table class="table table-bordered">
+    
+        <thead>
+            <th>Job Title</th>
+            <th>Company Name</th>
+            <th>Job Description(or URL)</th>
+            <th>Job Type</th>
+        </thead>
+        
+        <tbody ng-repeat="job in jobs">
+        
+        <tr>
+            <td>{{job.jobTitle}}</td>
+            <td>{{job.companyName}}</td>
+            <td>{{job.jobDescription}}</td>
+            <td>{{job.fullTime}}</td>
+        </tr>
+    
+    </tbody>
+        
+    </table>
+        </div>
+</div>
+<div ui-view></div>
+<!--
+<div class="container">
+  
+ <form role="form" class="row">
+    <div class="form-group">
+      <div class="col-xs-6">
+        <label for="ex1">Job Title</label>
+           <input type="text"
+               name="todoNameField"
+               ng-model="todoName1"
+               placeholder="Awkwardly Good Developer"
+               required ng-minlength="3"
+               class="form-control input-lg"
+               ng-keyup="($event.keyCode == 13 && todoName.length > 2) ? addItem() : return"
+                />
+      </div>
+      <div class="col-xs-6">
+        <label for="ex2">Company</label>
+            <input type="text"
+               name="todoNameField"
+               ng-model="todoName2"
+               placeholder="Orange"
+               required ng-minlength="3"
+               class="form-control input-lg"
+               ng-keyup="($event.keyCode == 13 && todoName.length > 2) ? addItem() : return"
+                />  
+      </div>
+    </div>
+  </form>
+    
+    <strong>Job Type </strong><br>    
+        <input type="radio" name="jobtype" value="full-time" checked> Full-Time<br>      
+        <input type="radio" name="jobtype" value="all-inclusive"> All-inclusive<br>
+        <input type="radio" name="jobtype" value="contract"> Contract<br>
+        <input type="radio" name="jobtype" value="part-time" checked> Part-time<br>      
+        <input type="radio" name="jobtype" value="freelance"> Freelance<br>
+        <input type="radio" name="jobtype" value="internship"> Internship<br>
+    
+    <strong>Location</strong> <br>
+    
+        <input type="radio" name="location" ng-click="toggle()"> On Site<br>
+            <p ng-show="myVar">
+              <input type=text ng-model="onsite"> Street Address<br>
+              <input type=text ng-model="onsite"> City<br>
+              <input type=text ng-model="onsite"> State<br>
+              <input type=text ng-model="onsite"> Postal Code<br>
+            </p>
+
+        <input type="radio" name="location" value="remote"> Remote<br>
+
+    <strong>Job Description</strong> <br>
+        <input type="radio" name="description" ng-click="toggleTwo()"> Link Job URL<br>
+            <p ng-show="myVarTwo"  class="col-xs-6">
+                <input class="form-control input-lg" type=text ng-model="link" placeholder="http://your-job.com/jobs/job.html"><br>
+            </p>
+    
+<form role="form" class="row">
+    <div class="form-group">
+      <div class="col-xs-6">
+        <p1>Input Job Description</p1>
+           <input type="text"
+               name="todoNameField"
+               ng-model="todoName3"
+               placeholder="Code Monkey"
+               required ng-minlength="3"
+               class="form-control input-lg"
+               ng-keyup="($event.keyCode == 13 && todoName.length > 2) ? addItem() : return"
+                />
+      </div>
+    </div>
+</form>
+-->
+    
+<!--ADD ITEM FORM-->
+<!--
+<form name="todoForm">
+
+    <div>
+        <button ng-click="addTodo()"
+                ng-hide="myForm.todoNameField.$invalid"
+                class="btn btn-primary" type="button"
+                >Submit Job
+        </button>
+        <input class="btn btn-primary" type="submit" ui-sref="postings" value="View Job Postings">
+    </div>
+
+</form>
+-->
+
+
+<!--TODO LIST-->
+
+<!--
+<h4 ng-show="(todos | filter:{status: ''}).length">Job Title</h4>
+
+<div ng-repeat="todo in todos | filter:{status: ''}"
+     class="row list-item">
+
+    <div class="col-md-6">
+-->
+
+        <!--TODO LABEL-->
+<!--
+        <span>{{todo.name}}</span>
+    </div>
+    <div class="col-md-6 text-right">
+        START TODO BUTTON
+        <a class="btn btn-warning"
+           ng-click="startTodo($index, todo)">
+            Complete
+        </a>
+    </div>
+
+</div>
+-->
+<!--
+
+<h4 ng-show="(todos | filter:{status: ''}).length">Company</h4>
+
+<div ng-repeat="todo in todos | filter:{status: ''}"
+     class="row list-item">
+
+    <div class="col-md-6">
+-->
+
+        <!--TODO LABEL-->
+<!--
+        <span>{{todo.name}}</span>
+    </div>
+    <div class="col-md-6 text-right">
+-->
+        <!--START TODO BUTTON-->
+<!--
+        <a class="btn btn-warning"
+           ng-click="startTodo($index, todo)">
+            Complete
+        </a>
+    </div>
+
+</div>
+<h4 ng-show="(todos | filter:{status: ''}).length">Job Description</h4>
+
+<div ng-repeat="todo in todos | filter:{status: ''}"
+     class="row list-item">
+
+    <div class="col-md-6">
+-->
+
+        <!--TODO LABEL-->
+<!--
+        <span>{{todo.name}}</span>
+    </div>
+    <div class="col-md-6 text-right">
+        START TODO BUTTON
+        <a class="btn btn-warning"
+           ng-click="startTodo($index, todo)">
+            Complete
+        </a>
+    </div>
+
+</div>
+-->

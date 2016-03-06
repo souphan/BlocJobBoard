@@ -1,0 +1,43 @@
+wrapper {
+    max-width: 1040px;
+    width: 90%;
+    border: 2px   #000
+}
+.container-fluid {
+    background-color: #333333;
+}
+.navbar-brand {
+    color: #f2f2f2;
+    font-size: 20px;
+}
+.navbar-front {
+    color: #f2f2f2;
+    font-size: 20px;
+}
+.dropdown-toggle, .dropdown-menu, .navbar-mess, .navbar-sched, .navbar-acc, .navbar-log {
+    color: #f2f2f2;
+    font-size: 20px;
+}
+.btn-primary {
+    background-color: #F15A24;
+}
+body {
+    background-color: #f2f2f2;
+    font-family: 'Open Sans';
+    font-weight: 300;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-decoration: none;
+    text-indent: 0px;
+    line-height: 1.43em (34.28px);
+vertical-align: baseline;
+letter-spacing: normal;
+word-spacing: 0px;
+    font-size: 20px;
+}
+/*background: #f2f2f2
+#333333
+
+orange #F15A24
+*/
