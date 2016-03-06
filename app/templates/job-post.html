@@ -1,6 +1,70 @@
 <navi-menu></navi-menu>
 
 <div class="container">
+    <div class="form-group">
+        <div class="col-md-6">
+            <label>Job Title</label>
+            <input class="form-control input-lg" type="text" id="jobTitle" ng-model="jobTitle" placeholder="Awkwardly Good Developer">
+        </div>
+        <div class="col-md-6">
+            <label>Company Name</label>
+            <input class="form-control input-lg" type="text" id="companyName" ng-model="companyName" placeholder="Orange"><br>
+        </div>
+       <div class="col-md-6">
+           <label>Job Type</label><br>    
+                <input type="radio" name="fullTime" id="fullTime" ng-values="fullTime"> Full-Time<br>      
+                <input type="radio" name="contract" id="contract" ng-values="contract"> Contract<br>
+                <input type="radio" name="partTime" id="partTime" ng-values="partTime"> Part-Time<br>      
+                <input type="radio" name="freelance" id="freelance" ng-values="freelance"> Freelance<br>
+                <input type="radio" name="internship" id="internship" ng-values="internship"> Internship<br>
+        </div>
+        <div class="col-md-6">
+            <label>Location</label> <br>
+                <input type="radio" name="onSite" id="onSite" ng-click="toggle()"> On Site<br>
+                    <p ng-show="myVar">
+                      <input type=text ng-model="streetAddress"> Street Address<br>
+                      <input type=text ng-model="city"> City<br>
+                      <input type=text ng-model="state"> State<br>
+                      <input type=text ng-model="postalCode"> Postal Code<br>
+                    </p>
+   
+                <input type="radio" name="remote" id="remote"> Remote<br>
+        </div>
+        <div class="col-md-6">
+            <label>Job Description(or URL)</label>
+            <input class="form-control input-lg" type="text" id="jobDescription" ng-model="jobDescription" placeholder="http://your-job.com/jobs/job.html"><br>
+        </div>
+    <button class="btn btn-primary" ng-click="saveJobs()">
+        Post <span class="glyphicon glyphicon-ok"></span>
+    </button>
+    <input class="btn btn-primary" type="submit" ui-sref="postings" value="View Job Postings">
+
+    <table class="table table-bordered">
+    
+        <thead>
+            <th>Job Title</th>
+            <th>Company Name</th>
+            <th>Job Description(or URL)</th>
+            <th>Job Type</th>
+        </thead>
+        
+        <tbody ng-repeat="job in jobs">
+        
+        <tr>
+            <td>{{job.jobTitle}}</td>
+            <td>{{job.companyName}}</td>
+            <td>{{job.jobDescription}}</td>
+            <td>{{job.fullTime}}</td>
+        </tr>
+    
+    </tbody>
+        
+    </table>
+        </div>
+</div>
+<div ui-view></div>
+<!--
+<div class="container">
   
  <form role="form" class="row">
     <div class="form-group">
@@ -70,8 +134,10 @@
       </div>
     </div>
 </form>
+-->
     
 <!--ADD ITEM FORM-->
+<!--
 <form name="todoForm">
 
     <div>
@@ -84,22 +150,26 @@
     </div>
 
 </form>
+-->
 
 
 <!--TODO LIST-->
 
+<!--
 <h4 ng-show="(todos | filter:{status: ''}).length">Job Title</h4>
 
 <div ng-repeat="todo in todos | filter:{status: ''}"
      class="row list-item">
 
     <div class="col-md-6">
+-->
 
         <!--TODO LABEL-->
+<!--
         <span>{{todo.name}}</span>
     </div>
     <div class="col-md-6 text-right">
-        <!--START TODO BUTTON-->
+        START TODO BUTTON
         <a class="btn btn-warning"
            ng-click="startTodo($index, todo)">
             Complete
@@ -107,6 +177,8 @@
     </div>
 
 </div>
+-->
+<!--
 
 <h4 ng-show="(todos | filter:{status: ''}).length">Company</h4>
 
@@ -114,12 +186,16 @@
      class="row list-item">
 
     <div class="col-md-6">
+-->
 
         <!--TODO LABEL-->
+<!--
         <span>{{todo.name}}</span>
     </div>
     <div class="col-md-6 text-right">
+-->
         <!--START TODO BUTTON-->
+<!--
         <a class="btn btn-warning"
            ng-click="startTodo($index, todo)">
             Complete
@@ -133,20 +209,19 @@
      class="row list-item">
 
     <div class="col-md-6">
+-->
 
         <!--TODO LABEL-->
+<!--
         <span>{{todo.name}}</span>
     </div>
     <div class="col-md-6 text-right">
-        <!--START TODO BUTTON-->
+        START TODO BUTTON
         <a class="btn btn-warning"
            ng-click="startTodo($index, todo)">
             Complete
         </a>
     </div>
 
-</div>    
 </div>
-   
-</div>
-<div ui-view></div>
+-->

@@ -18,7 +18,7 @@ blocJobs.config(function($stateProvider, $urlRouterProvider){
     })
     .state('postings', {
         url: "/postings",
-        controller: 'postingsCtrl',
+        controller: 'jobPostCtrl',
         templateUrl: "/templates/postings.html"
     })
 })
