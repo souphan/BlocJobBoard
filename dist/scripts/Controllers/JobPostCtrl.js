@@ -13,38 +13,62 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', function($scope,
     $scope.jobTitle = "";
     $scope.companyName = "";
     $scope.jobDescription = "";
-    $scope.fullTime = "Full Time";
-    $scope.partTime = "Part Time";
-    $scope.contract = "Contract";
-    $scope.freelance = "Freelance";
-    $scope.internship = "Internship";
+//    $scope.fullTime = "Full Time";
+//    $scope.partTime = "Part Time";
+//    $scope.contract = "Contract";
+//    $scope.freelance = "Freelance";
+//    $scope.internship = "Internship";
+    $scope.jobType = []; //.push is for regular arrays/objects you need to use synchronised arrays/objects with angular
     $scope.jobs = {};
+
+    $scope.jobType.push({type:"Full Time"});
+    $scope.jobType.push({type:"Part Time"});
+    $scope.jobType.push({type:"Contract"});
+    $scope.jobType.push({type:"Freelance"});
+    $scope.jobType.push({type:"Internship"});
+    $scope.selectedType = $scope.jobType[0].type;
     
     $scope.myData = new Firebase('https://keodo-todo-list.firebaseio.com/Jobs');
     
     $scope.saveJobs = function() {
-        $scope.myData.push({jobTitle:$scope.jobTitle,
-                            companyName:$scope.companyName,
-                            jobDescription:$scope.jobDescription,
-                            fullTime:$scope.fullTime,
-                            partTime:$scope.partTime,
-                            contract:$scope.contract,
-                            freelance:$scope.freelance,
-                            internship:$scope.internship});
+        // CREATE A UNIQUE ID
+        var timestamp = new Date().valueOf();
+        $scope.myData.push({jobTitle:$scope.jobTitle,id: timestamp,
+                            companyName:$scope.companyName,id: timestamp,
+                            jobDescription:$scope.jobDescription,id: timestamp
+//                            jobType:$scope.jobType
+//                            fullTime:$scope.fullTime,
+//                            partTime:$scope.partTime,
+//                            contract:$scope.contract,
+//                            freelance:$scope.freelance,
+//                            internship:$scope.internship
+});
         
         $scope.jobTitle = "";
         $scope.companyName = "";
         $scope.jobDescription = "";
-        $scope.fullTime = "";
-        $scope.partTime = "";
-        $scope.contract = "";
-        $scope.freelance = "";
-        $scope.internship = "";
+        $scope.jobType = [];
+//        $scope.fullTime = "Full Time";
+//        $scope.partTime = "Part Time";
+//        $scope.contract = "Contract";
+//        $scope.freelance = "Freelance";
+//        $scope.internship = "Internship";
     };
     
     $scope.myData.on('value', function(snapshot) {
         $scope.jobs = snapshot.val();
         $scope.$apply();
     });
+    
+    // REMOVE JOB ITEM METHOD
+    $scope.removeJob = function (index, job) {
+        
+        // CHECK THAT JOB IS VALID
+        if (job.id === undefined)return;
+
+        // FIREBASE: REMOVE JOB FROM LIST
+        $scope.myData.$remove(job);
+
+    };  
 
 }]);
