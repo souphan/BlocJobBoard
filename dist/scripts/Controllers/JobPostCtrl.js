@@ -18,8 +18,17 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', function($scope,
 //    $scope.contract = "Contract";
 //    $scope.freelance = "Freelance";
 //    $scope.internship = "Internship";
+    $scope.currentPage = 0;
+    $scope.pageSize = 5;
     $scope.jobType = []; //.push is for regular arrays/objects you need to use synchronised arrays/objects with angular
     $scope.jobs = {};
+//    
+//    $scope.numberOfPages=function(){
+//        return Math.ceil($scope.jobs.length/$scope.pageSize);                
+//        }
+//        for (var i=0; i<45; i++) {
+//            $scope.jobs.push("Item "+i);
+//        }
 
     $scope.jobType.push({type:"Full Time"});
     $scope.jobType.push({type:"Part Time"});

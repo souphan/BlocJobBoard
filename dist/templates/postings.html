@@ -12,8 +12,11 @@
             <th>Job Type</th>
             <th>Job Type</th>
             <th>Job Type</th>
+<!--
             <th>Job Type</th>
             <th>Job Type</th>
+-->
+            <th>Remove Job</th>
         </thead>
         
         <tbody ng-repeat="job in jobs">
@@ -25,8 +28,16 @@
             <td>{{job.fullTime}}</td>
             <td>{{job.partTime}}</td>
             <td>{{job.contract}}</td>
+            <!--
             <td>{{job.freelance}}</td>
             <td>{{job.internship}}</td>
+            -->
+            <td>
+              <a class="btn btn-danger"
+                 ng-click="removeJob($index, job)">
+                <i class="glyphicon glyphicon-remove"></i> Remove
+              </a>
+            </td>
         </tr>
     
     </tbody>
@@ -40,8 +51,4 @@
     </div>
 -->
     
-        <a class="btn btn-danger"
-           ng-click="removeJob($index, job)">
-            <i class="glyphicon glyphicon-remove"></i> Remove
-        </a>
     </div>
