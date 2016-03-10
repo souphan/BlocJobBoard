@@ -10,12 +10,16 @@
             <th>Company Name</th>
             <th>Job Description(or URL)</th>
             <th>Job Type</th>
-            <th>Job Type</th>
-            <th>Job Type</th>
 <!--
             <th>Job Type</th>
             <th>Job Type</th>
+            <th>Job Type</th>
+            <th>Job Type</th>
 -->
+            <th>Street</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Postal</th>
             <th>Remove Job</th>
         </thead>
         
@@ -26,12 +30,18 @@
             <td>{{job.companyName}}</td>
             <td>{{job.jobDescription}}</td>
             <td>{{job.fullTime}}</td>
+<!--
             <td>{{job.partTime}}</td>
             <td>{{job.contract}}</td>
-            <!--
+            
             <td>{{job.freelance}}</td>
             <td>{{job.internship}}</td>
-            -->
+            
+-->
+            <td>{{job.streetAddress}}</td>
+            <td>{{job.city}}</td>
+            <td>{{job.state}}</td>
+            <td>{{job.postalCode}}</td>
             <td>
               <a class="btn btn-danger"
                  ng-click="removeJob($index, job)">

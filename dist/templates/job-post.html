@@ -22,20 +22,20 @@
         
         <div class="col-md-6">
             <label>Location</label> <br>
-                <input type="radio" name="onSite" id="onSite" ng-click="toggle()"> On Site<br>
+                <input type="radio" ng-click="toggle()"> On Site<br>
                     <p ng-show="myVar">
-                      <input type=text ng-model="streetAddress"> Street Address<br>
-                      <input type=text ng-model="city"> City<br>
-                      <input type=text ng-model="state"> State<br>
-                      <input type=text ng-model="postalCode"> Postal Code<br>
+                      <input type=text id="streeAddress" ng-model="streeAddress" placeholder="Silicon Prarie Street"> Street Address<br>
+                      <input type=text id="city" ng-model="city" placeholder="Wichita"> City<br>
+                      <input type=text id="state" ng-model="state" placeholder="Kansas"> State<br>
+                      <input type=text id="postalCode" ng-model="postalCode" placeholder="42424"> Postal Code<br>
                     </p>
    
-                <input type="radio" name="remote" id="remote"> Remote<br>
+                <input type="radio"> Remote<br>
         </div>
         
         <div class="col-md-6">
             <label>Job Description(or URL)</label>
-            <input class="form-control input-lg" type="text" id="jobDescription" ng-model="jobDescription" placeholder="http://your-job.com/jobs/job.html"><br>
+            <input class="form-control input-lg" type="text" id="jobDescription" ng-model="jobDescription" placeholder="http://orange/jobs/job.html"><br>
         </div>
         
         <div class="post">
