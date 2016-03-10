@@ -1,6 +1,7 @@
 <navi-menu></navi-menu>
-
-<h2>Job Posting Here</h2>
+<div class="container">
+<h2>Job Postings Here</h2>
+<input class="btn btn-primary" type="submit" ui-sref="job-post" value="Back to Post">
 
     <table class="table table-bordered">
     
@@ -9,10 +10,17 @@
             <th>Company Name</th>
             <th>Job Description(or URL)</th>
             <th>Job Type</th>
+<!--
             <th>Job Type</th>
             <th>Job Type</th>
             <th>Job Type</th>
             <th>Job Type</th>
+-->
+            <th>Street</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Postal</th>
+            <th>Remove Job</th>
         </thead>
         
         <tbody ng-repeat="job in jobs">
@@ -22,12 +30,35 @@
             <td>{{job.companyName}}</td>
             <td>{{job.jobDescription}}</td>
             <td>{{job.fullTime}}</td>
+<!--
             <td>{{job.partTime}}</td>
             <td>{{job.contract}}</td>
+            
             <td>{{job.freelance}}</td>
             <td>{{job.internship}}</td>
+            
+-->
+            <td>{{job.streetAddress}}</td>
+            <td>{{job.city}}</td>
+            <td>{{job.state}}</td>
+            <td>{{job.postalCode}}</td>
+            <td>
+              <a class="btn btn-danger"
+                 ng-click="removeJob($index, job)">
+                <i class="glyphicon glyphicon-remove"></i> Remove
+              </a>
+            </td>
         </tr>
     
     </tbody>
         
     </table>
+<!--
+    <div class="col-md-6">
+
+        TODO LABEL
+        <span>{{job.jobTitle}}</span>
+    </div>
+-->
+    
+    </div>
