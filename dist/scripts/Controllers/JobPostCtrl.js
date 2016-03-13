@@ -1,6 +1,6 @@
 blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {  
     
-    //TOGGLE RADIO BUTTON TO SHOW ADDRESS
+    // TOGGLE RADIO BUTTON TO SHOW ADDRESS
     $scope.myVar = false;
     $scope.myVarTwo = false;
     $scope.toggle = function() {
@@ -11,7 +11,18 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', function($scope,
     $scope.myVarTwo = !$scope.myVarTwo;
     };
     
-    //SETTING VARIABLE FOR EMPTY TEXT INPUT
+    $scope.formModel = {};
+    
+    $scope.onSubmit = function(valid) {
+    if (valid) {
+        console.log("Job submitted")
+        console.log($scope.formModel);
+    } else {
+        console.log("Invalid Form")
+    }
+    
+    };
+    // SETTING VARIABLE FOR EMPTY TEXT INPUT
     $scope.jobTitle = "";
     $scope.companyName = "";
     $scope.jobDescription = "";
@@ -25,13 +36,13 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', function($scope,
 //    $scope.freelance = "Freelance";
 //    $scope.internship = "Internship";
     
-    //SETTING PAGE START INDEXING POINT
+    // SETTING PAGE START INDEXING POINT
     $scope.currentPage = 0;
     $scope.pageSize = 5;
     $scope.jobType = []; //.push is for regular arrays/objects you need to use synchronised arrays/objects with angular
     $scope.jobs = {};
     
-    //INCLUDING RADIO BUTTON JOB TYPE TO BE ADDED IN FIRBASE
+    // INCLUDING RADIO BUTTON JOB TYPE TO BE ADDED IN FIRBASE
     $scope.jobType.push({type:"Full Time"});
     $scope.jobType.push({type:"Part Time"});
     $scope.jobType.push({type:"Contract"});
@@ -46,7 +57,7 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', function($scope,
 //            $scope.jobs.push("Item "+i);
 //        }
 
-    //SETTING FIREBASE TO myData VARIABLE
+    // SETTING FIREBASE TO myData VARIABLE
     $scope.myData = new Firebase('https://keodo-todo-list.firebaseio.com/Jobs');
     
     $scope.saveJobs = function() {
@@ -66,7 +77,7 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', function($scope,
 //                            freelance:$scope.freelance,
 //                            internship:$scope.internship
 });
-        
+        // SETTING VARIABLE TO EMPTY TEXT AND ARRAYS AFTER SUBMITTING DATA
         $scope.jobTitle = "";
         $scope.companyName = "";
         $scope.jobDescription = "";
@@ -82,6 +93,7 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', function($scope,
 //        $scope.internship = "Internship";
     };
     
+    // REFRESH DIGEST CYCLE WITH $APPLY SERVICE
     $scope.myData.on('value', function(snapshot) {
         $scope.jobs = snapshot.val();
         $scope.$apply();
