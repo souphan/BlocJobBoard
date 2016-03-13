@@ -11,6 +11,17 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', function($scope,
     $scope.myVarTwo = !$scope.myVarTwo;
     };
     
+    $scope.formModel = {};
+    
+    $scope.onSubmit = function(valid) {
+    if (valid) {
+        console.log("Job submitted")
+        console.log($scope.formModel);
+    } else {
+        console.log("Invalid Form")
+    }
+    
+    };
     //SETTING VARIABLE FOR EMPTY TEXT INPUT
     $scope.jobTitle = "";
     $scope.companyName = "";

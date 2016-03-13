@@ -1,20 +1,40 @@
+<!--Navigation menu-->
 <navi-menu></navi-menu>
-
+<!--form validation https://www.youtube.com/channel/UCsHp-vTNZ4a5a-yGa4V3jWA-->
 <div class="container">
-    <div class="form-group">
+    <form ng-submit="onSubmit(theForm.$valid)"
+          novalidate="novalidate"
+          name="theForm">
+    <div class="form-group" ng-class="
+         {
+          'has-error':!theForm.email.$valid && !theForm.$pristine,                  'has-success':theForm.email.$valid && !theForm.$pristine        
+         }
+         ">
         <div class="col-md-6">
             <label>Job Title</label>
-            <input class="form-control input-lg" type="text" id="jobTitle" ng-model="jobTitle" placeholder="Awkwardly Good Developer">
+            <input class="form-control input-lg" 
+                   type="text" id="jobTitle" 
+                   ng-model="jobTitle" 
+                   placeholder="Awkwardly Good Developer"
+                   required="required">
+                   
         </div>
+    </div>
         <div class="col-md-6">
             <label>Company Name</label>
-            <input class="form-control input-lg" type="text" id="companyName" ng-model="companyName" placeholder="Orange"><br>
+            <input class="form-control input-lg" 
+                   type="text" id="companyName" 
+                   ng-model="companyName" 
+                   placeholder="Orange"
+                   required="required"><br>
         </div>
         
        <div class="col-md-6">
            <label>Job Type</label>{{selectedType | json}}<br>    
                 <div ng-repeat="job in jobType">
-                    <input type="radio" ng-value="job.type" ng-model="$parent.selectedType" />
+                    <input type="radio" 
+                           ng-value="job.type" 
+                           ng-model="$parent.selectedType" />
                     {{job.type}}
                 </div>
                 <hr/>
@@ -24,10 +44,26 @@
             <label>Location</label> <br>
                 <input type="radio" ng-click="toggle()"> On Site<br>
                     <p ng-show="myVar">
-                      <input type=text id="streeAddress" ng-model="streeAddress" placeholder="Silicon Prarie Street"> Street Address<br>
-                      <input type=text id="city" ng-model="city" placeholder="Wichita"> City<br>
-                      <input type=text id="state" ng-model="state" placeholder="Kansas"> State<br>
-                      <input type=text id="postalCode" ng-model="postalCode" placeholder="42424"> Postal Code<br>
+                      <input type=text 
+                             id="streeAddress" 
+                             ng-model="streeAddress" 
+                             placeholder="Silicon Prarie Street"
+                             required="required"> Street Address<br>
+                      <input type=text 
+                             id="city" 
+                             ng-model="city" 
+                             placeholder="Wichita"
+                             required="required"> City<br>
+                      <input type=text 
+                             id="state" 
+                             ng-model="state" 
+                             placeholder="Kansas"
+                             required="required"> State<br>
+                      <input type=text 
+                             id="postalCode" 
+                             ng-model="postalCode" 
+                             placeholder="42424"
+                             required="required"> Postal Code<br>
                     </p>
    
                 <input type="radio"> Remote<br>
@@ -35,15 +71,27 @@
         
         <div class="col-md-6">
             <label>Job Description(or URL)</label>
-            <input class="form-control input-lg" type="text" id="jobDescription" ng-model="jobDescription" placeholder="http://orange/jobs/job.html"><br>
+            <input class="form-control input-lg" 
+                   type="text" id="jobDescription" 
+                   ng-model="jobDescription" 
+                   placeholder="http://orange/jobs/job.html"
+                   required="required"><br>
         </div>
+        </form>
         
         <div class="post">
-            <button class="btn btn-primary" ng-click="saveJobs()">
+            <button class="btn btn-primary" 
+                    ng-click="saveJobs()"
+                    ng-disabled="!theForm.$valid">
                 Post <span class="glyphicon glyphicon-ok"></span>
             </button>
-            <input class="btn btn-primary" type="submit" ui-sref="postings" value="View Job Postings">
+            <input class="btn btn-primary" 
+                   type="submit" 
+                   ui-sref="postings" 
+                   value="View Job Postings">
         </div>
+        
+<!--        <pre>{{theForm | json}}</pre>-->
         
     <table class="table table-bordered">
         <thead>
@@ -65,7 +113,6 @@
     </tbody>
         
     </table>
-    </div>
    
 </div>
 <div ui-view></div>

@@ -1,7 +1,26 @@
+<!--Navigation menu-->
 <navi-menu></navi-menu>
 
+    <!-- LOGIN PANEL -->
+    <div class="panel" ng-hide="authData">
+      <!-- Login button -->
+      <button ng-click="login()">Login With GitHub</button>
+    </div>
+
+    <!-- ACCOUNT PANEL -->
+    <div class="panel" ng-show="authData" >
+      <!-- Logged in user data -->
+      <img ng-src="{{ authData.github.cachedUserProfile.avatar_url }}" />
+          <p>
+            {{ authData.github.displayName }} <b><a href="{{ authData.github.cachedUserProfile.html_url }}">@{{ authData.github.username }}</a></b>
+          </p>
+
+      <!-- Logout button -->
+      <button ng-click="logout()">Logout</button>
+      <input class="btn btn-primary" type="submit" ui-sref="job-post" value="Post a Job">
+    </div>
+
 <div class="container">
-<input class="btn btn-primary" type="submit" ui-sref="job-post" value="Post a Job">
 </div>
 
 <div ui-view></div>

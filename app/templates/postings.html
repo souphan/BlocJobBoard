@@ -1,8 +1,13 @@
+<!--Navigation menu-->
 <navi-menu></navi-menu>
 <div class="container">
 <h2>Job Postings Here</h2>
-<input class="btn btn-primary" type="submit" ui-sref="job-post" value="Back to Post">
+<input class="btn btn-primary" 
+       type="submit" 
+       ui-sref="job-post" 
+       value="Back to Post">
 
+    <!--Verbose job postings-->
     <table class="table table-bordered">
     
         <thead>
@@ -42,6 +47,7 @@
             <td>{{job.city}}</td>
             <td>{{job.state}}</td>
             <td>{{job.postalCode}}</td>
+            <!--Remove button-->
             <td>
               <a class="btn btn-danger"
                  ng-click="removeJob($index, job)">
