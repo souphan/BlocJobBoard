@@ -1,21 +1,21 @@
-<!--Navigation menu-->
+<!--NAVIGATION MENU-->
 <navi-menu></navi-menu>
 
     <!-- LOGIN PANEL -->
     <div class="panel" ng-hide="authData">
-      <!-- Login button -->
+      <!-- LOGIN BUTTON -->
       <button ng-click="login()">Login With GitHub</button>
     </div>
 
     <!-- ACCOUNT PANEL -->
     <div class="panel" ng-show="authData" >
-      <!-- Logged in user data -->
+      <!-- LOGGED IN USER DATA -->
       <img ng-src="{{ authData.github.cachedUserProfile.avatar_url }}" />
           <p>
             {{ authData.github.displayName }} <b><a href="{{ authData.github.cachedUserProfile.html_url }}">@{{ authData.github.username }}</a></b>
           </p>
 
-      <!-- Logout button -->
+      <!-- LOGOUT BUTTON -->
       <button ng-click="logout()">Logout</button>
       <input class="btn btn-primary" type="submit" ui-sref="job-post" value="Post a Job">
     </div>

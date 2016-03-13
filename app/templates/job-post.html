@@ -1,4 +1,4 @@
-<!--Navigation menu-->
+<!--NAVIGATION MENU-->
 <navi-menu></navi-menu>
 <!--form validation https://www.youtube.com/channel/UCsHp-vTNZ4a5a-yGa4V3jWA-->
 <div class="container">
@@ -10,6 +10,7 @@
           'has-error':!theForm.email.$valid && !theForm.$pristine,                  'has-success':theForm.email.$valid && !theForm.$pristine        
          }
          ">
+        <!--TEXT INPUT FOR JOB TITLE-->
         <div class="col-md-6">
             <label>Job Title</label>
             <input class="form-control input-lg" 
@@ -20,6 +21,7 @@
                    
         </div>
     </div>
+        <!--TEXT INPUT FOR COMPANY NAME-->
         <div class="col-md-6">
             <label>Company Name</label>
             <input class="form-control input-lg" 
@@ -28,7 +30,8 @@
                    placeholder="Orange"
                    required="required"><br>
         </div>
-        
+       
+       <!--RADIO BUTTON THAT PASSES IN JOB TYPE WHEN CLICKED-->
        <div class="col-md-6">
            <label>Job Type</label>{{selectedType | json}}<br>    
                 <div ng-repeat="job in jobType">
@@ -39,7 +42,7 @@
                 </div>
                 <hr/>
         </div>
-        
+        <!--RADIO BUTTON FOR LOCATION WITH TEXT INPUT DROP DOWN TOGGLE FOR LOCATION-->
         <div class="col-md-6">
             <label>Location</label> <br>
                 <input type="radio" ng-click="toggle()"> On Site<br>
@@ -65,10 +68,10 @@
                              placeholder="42424"
                              required="required"> Postal Code<br>
                     </p>
-   
+                <!--RADIO INPUT FOR REMOTE-->
                 <input type="radio"> Remote<br>
         </div>
-        
+        <!--TEXT INPUT FOR JOB DESCRIPTION-->
         <div class="col-md-6">
             <label>Job Description(or URL)</label>
             <input class="form-control input-lg" 
@@ -78,13 +81,14 @@
                    required="required"><br>
         </div>
         </form>
-        
+        <!--BUTTON FOR SUBMITTING VALID JOB INFORMATION-->
         <div class="post">
             <button class="btn btn-primary" 
                     ng-click="saveJobs()"
                     ng-disabled="!theForm.$valid">
                 Post <span class="glyphicon glyphicon-ok"></span>
             </button>
+            <!--VIEW VERBOSE JOB LISTINGS-->
             <input class="btn btn-primary" 
                    type="submit" 
                    ui-sref="postings" 
@@ -92,7 +96,7 @@
         </div>
         
 <!--        <pre>{{theForm | json}}</pre>-->
-        
+    <!--TABLE FORMAT FOR JOB LISTINGS BEING RETRIEVED-->    
     <table class="table table-bordered">
         <thead>
             <th>Job Title</th>
@@ -100,7 +104,7 @@
             <th>Job Description(or URL)</th>
             <th>Job Type</th>
         </thead>
-        
+        <!--RETRIEVES DATA FROM FIREBASE USING NG-REPEAT DIRECTIVE-->  
         <tbody ng-repeat="job in jobs">
         
         <tr>
