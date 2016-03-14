@@ -1,39 +1,47 @@
 <!--NAVIGATION MENU-->
 <navi-menu></navi-menu>
-<!--form validation https://www.youtube.com/channel/UCsHp-vTNZ4a5a-yGa4V3jWA-->
+
 <div class="container">
-    <form ng-submit="onSubmit(theForm.$valid)"
-          novalidate="novalidate"
-          name="theForm">
-    <div class="form-group" ng-class="
-         {
-          'has-error':!theForm.email.$valid && !theForm.$pristine,                  'has-success':theForm.email.$valid && !theForm.$pristine        
-         }
-         ">
+    <form ng-submit="saveJobs()"
+          novalidate="novalidate">
+    <div class="form-group">
         <!--TEXT INPUT FOR JOB TITLE-->
         <div class="col-md-6">
-            <label>Job Title</label>
+            <label for="jobTitle" class="control-label">Job Title</label>
             <input class="form-control input-lg" 
-                   type="text" id="jobTitle" 
-                   ng-model="jobTitle" 
+                   type="text"
+                   ng-model="jobTitle"
+                   ng-pattern="/^[a-zA-Z][a-zA-Z0-9-_\.\s]{1,30}$/"
+                   id="jobTitle"
                    placeholder="Awkwardly Good Developer"
-                   required="required">
-                   
+                   ng-pattern-err-type="jobTitle"
+                   required="required"
+                   name="jobTitle">
+        
+            <!--VALIDATION BEFORE AUTO-VALIDATE-->
+<!--
+            <p class="help-block" ng-show="theForm.jobTitle.$error.required && (!theForm.$pristine || theForm.$submitted)">
+                This field is required
+            </p>
+-->           
         </div>
-    </div>
+        
         <!--TEXT INPUT FOR COMPANY NAME-->
         <div class="col-md-6">
-            <label>Company Name</label>
+            <label for="companyName" class="control-label">Company Name</label>
             <input class="form-control input-lg" 
-                   type="text" id="companyName" 
-                   ng-model="companyName" 
+                   type="text" 
+                   ng-model="companyName"
+                   ng-pattern="/^[a-zA-Z][a-zA-Z0-9-_\.\s]{1,30}$/"
+                   id="companyName"
                    placeholder="Orange"
-                   required="required"><br>
+                   ng-pattern-err-type="companyName">
+                   <!--required="required"--><br>
         </div>
        
        <!--RADIO BUTTON THAT PASSES IN JOB TYPE WHEN CLICKED-->
        <div class="col-md-6">
-           <label>Job Type</label>{{selectedType | json}}<br>    
+           <label for="jobType" class="control-label">Job Type</label>{{selectedType | json}}<br>    
                 <div ng-repeat="job in jobType">
                     <input type="radio" 
                            ng-value="job.type" 
@@ -42,50 +50,52 @@
                 </div>
                 <hr/>
         </div>
+        
         <!--RADIO BUTTON FOR LOCATION WITH TEXT INPUT DROP DOWN TOGGLE FOR LOCATION-->
         <div class="col-md-6">
-            <label>Location</label> <br>
+            <label for="location" class="control-label">Location</label> <br>
                 <input type="radio" ng-click="toggle()"> On Site<br>
                     <p ng-show="myVar">
                       <input type=text 
                              id="streeAddress" 
                              ng-model="streeAddress" 
-                             placeholder="Silicon Prarie Street"
-                             required="required"> Street Address<br>
+                             placeholder="Silicon Prarie Street"> Street Address<br>
                       <input type=text 
                              id="city" 
                              ng-model="city" 
-                             placeholder="Wichita"
-                             required="required"> City<br>
+                             placeholder="Wichita"> City<br>
                       <input type=text 
                              id="state" 
                              ng-model="state" 
-                             placeholder="Kansas"
-                             required="required"> State<br>
+                             placeholder="Kansas"> State<br>
                       <input type=text 
                              id="postalCode" 
-                             ng-model="postalCode" 
+                             ng-model="postalCode"
+                             ng-pattern="/(\d{5}([\-]\d{4})?)/"
                              placeholder="42424"
-                             required="required"> Postal Code<br>
+                             ng-pattern-err-type="postalCode"> Postal Code<br>
                     </p>
                 <!--RADIO INPUT FOR REMOTE-->
                 <input type="radio"> Remote<br>
         </div>
+        
         <!--TEXT INPUT FOR JOB DESCRIPTION-->
         <div class="col-md-6">
-            <label>Job Description(or URL)</label>
+            <label for="jobDescription" class="control-label">Job Description(or URL)</label>
             <input class="form-control input-lg" 
-                   type="text" id="jobDescription" 
-                   ng-model="jobDescription" 
+                   type="text"
+                   ng-model="jobDescription"
+                   ng-pattern="/^[a-zA-Z][a-zA-Z0-9-_\.\s]{1,30}$/ || /https?://.+/"
+                   id="jobDescription"
                    placeholder="http://orange/jobs/job.html"
+                   ng-pattern-err-type="jobDescription"
                    required="required"><br>
         </div>
-        </form>
+        
         <!--BUTTON FOR SUBMITTING VALID JOB INFORMATION-->
         <div class="post">
             <button class="btn btn-primary" 
-                    ng-click="saveJobs()"
-                    ng-disabled="!theForm.$valid">
+                    type="submit">
                 Post <span class="glyphicon glyphicon-ok"></span>
             </button>
             <!--VIEW VERBOSE JOB LISTINGS-->
@@ -94,7 +104,12 @@
                    ui-sref="postings" 
                    value="View Job Postings">
         </div>
+            <button class="btn btn-primary" 
+                    type="submit">
+                Register <span class="glyphicon glyphicon-ok"></span>
+            </button>
         
+<!--        DATA BINDING WITH JSON FILTERS-->
 <!--        <pre>{{theForm | json}}</pre>-->
     <!--TABLE FORMAT FOR JOB LISTINGS BEING RETRIEVED-->    
     <table class="table table-bordered">
@@ -104,6 +119,7 @@
             <th>Job Description(or URL)</th>
             <th>Job Type</th>
         </thead>
+        
         <!--RETRIEVES DATA FROM FIREBASE USING NG-REPEAT DIRECTIVE-->  
         <tbody ng-repeat="job in jobs">
         
@@ -117,7 +133,8 @@
     </tbody>
         
     </table>
-   
+    </div>
+   </form>
 </div>
 <div ui-view></div>
 <!--

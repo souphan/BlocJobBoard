@@ -1,4 +1,13 @@
-var blocJobs = angular.module('blocJobs', ["ui.router", "firebase"])
+var blocJobs = angular.module('blocJobs', ["ui.router", "firebase", "jcs-autoValidate"]); //"jcs-autoValidate"
+
+blocJobs.run(function (defaultErrorMessageResolver) {
+    defaultErrorMessageResolver.getErrorMessages().then(function (errorMessages) {
+        errorMessages['jobTitle'] = 'Job title can only contain numbers and letters';
+        errorMessages['companyName'] = 'Company name can only contain numbers and letters';
+        errorMessages['jobDescription'] = 'Please enter a URL, or description of job';
+        errorMessages['postalCode'] = 'Please enter a valid postal code';
+    })       
+});
 
 blocJobs.config(function($stateProvider, $urlRouterProvider){
     
@@ -25,7 +34,7 @@ blocJobs.config(function($stateProvider, $urlRouterProvider){
 
 // RE-USABLE FACTORY THAT GENERATES THE $firebaseAuth INSTANCE
 blocJobs.factory("Auth", function($firebaseAuth) {
-  var ref = new Firebase("https://ng-auth.firebaseio.com");
+  var ref = new Firebase("https://keodo-todo-list.firebaseio.com");
   return $firebaseAuth(ref);
 });
 
