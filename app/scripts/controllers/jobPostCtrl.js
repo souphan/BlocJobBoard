@@ -1,4 +1,6 @@
-blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {  
+blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', '$http', function($scope, $firebaseArray, $http) {
+    
+//    header("Access-Control-Allow-Origin: https://souphan.com:3000");
     
     // TOGGLE RADIO BUTTON TO SHOW ADDRESS
     $scope.myVar = false;
@@ -13,14 +15,17 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', function($scope,
     
     $scope.formModel = {};
     
-    $scope.onSubmit = function(valid) {
-    if (valid) {
-        console.log("Job submitted")
-        console.log($scope.formModel);
-    } else {
-        console.log("Invalid Form")
-    }
+    $scope.onSubmit = function() {
+            console.log("Job submitted");
+            console.log($scope.formModel);  
     
+//        $http.post('https://minmax-server.herokuapp.com/register/', $scope.formModel).
+//            success(function (data) {
+//            console.log("=D")
+//        }).error(function(data) {
+//            console.log("=(")
+//        });
+   
     };
     // SETTING VARIABLE FOR EMPTY TEXT INPUT
     $scope.jobTitle = "";

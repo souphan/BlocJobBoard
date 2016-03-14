@@ -1,4 +1,4 @@
-// CONTROLLER WITH WITH REUSABLE AUTH FACTORY
+// CONTROLLER WITH REUSABLE AUTH FACTORY
 blocJobs.controller('mainCtrl', ['$scope', '$http', 'Auth', function($scope, $http, Auth) { 
   // LISTENS FOR CHANGES IN AUTHENTICATION STATE
   Auth.$onAuth(function(authData) {

@@ -1,6 +1,7 @@
 <!--NAVIGATION MENU-->
 <navi-menu></navi-menu>
 <div class="container">
+    
 <!--BACK BUTTON FOR JOB-POST TEMPLATE PAGE-->      
 <h2>Job Postings Here</h2>
 <input class="btn btn-primary" 
@@ -28,6 +29,7 @@
             <th>Postal</th>
             <th>Remove Job</th>
         </thead>
+        
         <!--RETRIEVES DATA FROM FIREBASE USING NG-REPEAT DIRECTIVE-->  
         <tbody ng-repeat="job in jobs">
         
@@ -48,9 +50,9 @@
             <td>{{job.city}}</td>
             <td>{{job.state}}</td>
             <td>{{job.postalCode}}</td>
-            <!--Remove button-->
+        
             <td>
-              <!--BUTTON TO REMOVE DATA FROM PAGE AND FIREBASE-->  
+              <!--BUTTON TO REMOVE DATA FROM PAGE AND FIREBASE DB-->  
               <a class="btn btn-danger"
                  ng-click="removeJob($index, job)">
                 <i class="glyphicon glyphicon-remove"></i> Remove
