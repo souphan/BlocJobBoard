@@ -4,32 +4,16 @@ blocJobs.controller('postingsCtrl', ['$scope', '$firebaseArray', function($scope
     $scope.currentPage = 0; //SETTING PAGE START INDEXING POINT
     $scope.pageSize = 5;
 //    $scope.jobType = []; //.push is for regular arrays/objects you need to use synchronised arrays/objects with angular
-    $scope.jobs = {};
-
-//    $scope.jobType.push({type:"Full Time"});
-//    $scope.jobType.push({type:"Part Time"});
-//    $scope.jobType.push({type:"Contract"});
-//    $scope.jobType.push({type:"Freelance"});
-//    $scope.jobType.push({type:"Internship"});
-//    $scope.selectedType = $scope.jobType[0].type;
+    
+    $scope.myData = $firebaseArray(new Firebase('https://keodo-todo-list.firebaseio.com/Jobs'));
+    
+    
+//    $scope.myData.on('value', function(snapshot) {
+//        $scope.jobs = snapshot.val();
+//        $scope.$apply();
+//    });
 //    
-    //IMPLEMENTING PAGINATION
-//    $scope.numberOfPages=function(){
-//        return Math.ceil($scope.jobs.length/$scope.pageSize);                
-//        }
-//        for (var i=0; i<45; i++) {
-//            $scope.jobs.push("Item "+i);
-//        }
-
-    
-    $scope.myData = new Firebase('https://keodo-todo-list.firebaseio.com/Jobs');
-    
-    
-    $scope.myData.on('value', function(snapshot) {
-        $scope.jobs = snapshot.val();
-        $scope.$apply();
-    });
-    
+//    var jobFire = new Firebase('https://keodo-todo-list.firebaseio.com/Jobs');
     // REMOVE JOB ITEM METHOD
     $scope.removeJob = function (index, job) {
         

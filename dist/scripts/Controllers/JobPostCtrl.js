@@ -44,16 +44,16 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', '$http', functio
     // SETTING PAGE START INDEXING POINT
     $scope.currentPage = 0;
     $scope.pageSize = 5;
-    $scope.jobType = []; //.push is for regular arrays/objects you need to use synchronised arrays/objects with angular
+    $scope.jobTypes = []; //.push is for regular arrays/objects you need to use synchronised arrays/objects with angular
     $scope.jobs = {};
     
     // INCLUDING RADIO BUTTON JOB TYPE TO BE ADDED IN FIRBASE
-    $scope.jobType.push({type:"Full Time"});
-    $scope.jobType.push({type:"Part Time"});
-    $scope.jobType.push({type:"Contract"});
-    $scope.jobType.push({type:"Freelance"});
-    $scope.jobType.push({type:"Internship"});
-    $scope.selectedType = $scope.jobType[0].type;
+    $scope.jobTypes.push({type:"Full Time"});
+    $scope.jobTypes.push({type:"Part Time"});
+    $scope.jobTypes.push({type:"Contract"});
+    $scope.jobTypes.push({type:"Freelance"});
+    $scope.jobTypes.push({type:"Internship"});
+    $scope.selectedType = $scope.jobTypes[0].type;
     
 //    $scope.numberOfPages=function(){
 //        return Math.ceil($scope.jobs.length/$scope.pageSize);                
@@ -63,7 +63,7 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', '$http', functio
 //        }
 
     // SETTING FIREBASE TO myData VARIABLE
-    $scope.myData = new Firebase('https://keodo-todo-list.firebaseio.com/Jobs');
+    $scope.myData = $firebaseArray(new Firebase('https://keodo-todo-list.firebaseio.com/Jobs'));
     
     $scope.saveJobs = function() {
         // CREATE A UNIQUE ID
@@ -74,8 +74,8 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', '$http', functio
                             streetAddress:$scope.streetAddress,
                             city:$scope.city,id: timestamp,
                             state:$scope.state,id: timestamp,
-                            postalCode:$scope.postalCode,id: timestamp
-//                            jobType:$scope.jobType
+                            postalCode:$scope.postalCode,id: timestamp,
+                            jobType:$scope.selectedType
 //                            fullTime:$scope.fullTime,
 //                            partTime:$scope.partTime,
 //                            contract:$scope.contract,
@@ -98,11 +98,16 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', '$http', functio
 //        $scope.internship = "Internship";
     };
     
+    $scope.saveJobType = function() {
+        
+        $scope.myData.$add()
+    }
+    
     // REFRESH DIGEST CYCLE WITH $APPLY SERVICE
-    $scope.myData.on('value', function(snapshot) {
-        $scope.jobs = snapshot.val();
-        $scope.$apply();
-    });
+//    $scope.myData.on('value', function(snapshot) {
+//        $scope.jobs = snapshot.val();
+//        $scope.$apply();
+//    });
     
 
 }]);

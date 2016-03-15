@@ -31,13 +31,13 @@
         </thead>
         
         <!--RETRIEVES DATA FROM FIREBASE USING NG-REPEAT DIRECTIVE-->  
-        <tbody ng-repeat="job in jobs">
+        <tbody ng-repeat="job in myData">
         
         <tr>
             <td>{{job.jobTitle}}</td>
             <td>{{job.companyName}}</td>
             <td>{{job.jobDescription}}</td>
-            <td>{{job.fullTime}}</td>
+            <td>{{job.jobType}}</td>
 <!--
             <td>{{job.partTime}}</td>
             <td>{{job.contract}}</td>

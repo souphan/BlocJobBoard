@@ -41,8 +41,8 @@
        
        <!--RADIO BUTTON THAT PASSES IN JOB TYPE WHEN CLICKED-->
        <div class="col-md-6">
-           <label for="jobType" class="control-label">Job Type</label>{{selectedType | json}}<br>    
-                <div ng-repeat="job in jobType">
+           <label for="jobTypes" class="control-label">Job Type</label>{{selectedType | json}}<br>    
+                <div ng-repeat="job in jobTypes">
                     <input type="radio" 
                            ng-value="job.type" 
                            ng-model="$parent.selectedType" />
@@ -104,10 +104,6 @@
                    ui-sref="postings" 
                    value="View Job Postings">
         </div>
-            <button class="btn btn-primary" 
-                    type="submit">
-                Register <span class="glyphicon glyphicon-ok"></span>
-            </button>
         
 <!--        DATA BINDING WITH JSON FILTERS-->
 <!--        <pre>{{theForm | json}}</pre>-->
@@ -121,13 +117,13 @@
         </thead>
         
         <!--RETRIEVES DATA FROM FIREBASE USING NG-REPEAT DIRECTIVE-->  
-        <tbody ng-repeat="job in jobs">
+        <tbody ng-repeat="job in myData">
         
         <tr>
             <td>{{job.jobTitle}}</td>
             <td>{{job.companyName}}</td>
             <td>{{job.jobDescription}}</td>
-            <td>{{job.fullTime}}</td>
+            <td>{{job.jobType}}</td>
         </tr>
     
     </tbody>

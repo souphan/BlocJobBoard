@@ -14,8 +14,8 @@ blocJobs.config(function($stateProvider, $urlRouterProvider){
     // For any unmatched url, send to /route1
     $urlRouterProvider.otherwise("/")
 
-     $stateProvider
-     .state('landing', {
+    $stateProvider
+    .state('landing', {
          url: '/',
          controller: 'mainCtrl',
          templateUrl: '/templates/landing.html'
