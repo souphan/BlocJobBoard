@@ -98,11 +98,6 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', '$http', functio
 //        $scope.internship = "Internship";
     };
     
-    $scope.saveJobType = function() {
-        
-        $scope.myData.$add()
-    }
-    
     // REFRESH DIGEST CYCLE WITH $APPLY SERVICE
 //    $scope.myData.on('value', function(snapshot) {
 //        $scope.jobs = snapshot.val();
