@@ -68,7 +68,7 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', '$http', functio
     $scope.saveJobs = function() {
         // CREATE A UNIQUE ID
         var timestamp = new Date().valueOf();
-        $scope.myData.push({jobTitle:$scope.jobTitle,id: timestamp,
+        $scope.myData.$add({jobTitle:$scope.jobTitle,id: timestamp,
                             companyName:$scope.companyName,id: timestamp,
                             jobDescription:$scope.jobDescription,id: timestamp,
                             streetAddress:$scope.streetAddress,
