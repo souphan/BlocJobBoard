@@ -91,7 +91,33 @@
                    ng-pattern-err-type="jobDescription"
                    required="required"><br>
         </div>
+        <div class="row">
+            <div class ="col-md-6">
+                <form class="form-inline well well-sm">
+                    <span class="glyphicon glyphicon-search"></span>
+
+                    <div class="form-group">
+                        <input type="text"
+                               class="form-control"
+                               id="job"
+                               ng-model="search.jobTitle"
+                               placeholder="Search job...">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text"
+                               class="form-control"
+                               id="type"
+                               ng-model="search.companyName"
+                               placeholder="Search company...">
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
         
+        <pre>{{search}}</pre>
         <!--BUTTON FOR SUBMITTING VALID JOB INFORMATION-->
         <div class="post">
             <button class="btn btn-primary" 

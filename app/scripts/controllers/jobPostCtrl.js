@@ -13,12 +13,7 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', '$http', functio
     $scope.myVarTwo = !$scope.myVarTwo;
     };
     
-//        $http.post('https://minmax-server.herokuapp.com/register/', $scope.formModel).
-//            success(function (data) {
-//            console.log("=D")
-//        }).error(function(data) {
-//            console.log("=(")
-//        });
+    $scope.search = {};
    
     // SETTING VARIABLE FOR EMPTY TEXT INPUT
     $scope.jobTitle = "";
@@ -62,12 +57,12 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', '$http', functio
         // CREATE A UNIQUE ID
         var timestamp = new Date().valueOf();
         $scope.myData.$add({jobTitle:$scope.jobTitle,id: timestamp,
-                            companyName:$scope.companyName,id: timestamp,
-                            jobDescription:$scope.jobDescription,id: timestamp,
+                            companyName:$scope.companyName,
+                            jobDescription:$scope.jobDescription,
                             streetAddress:$scope.streetAddress,
-                            city:$scope.city,id: timestamp,
-                            state:$scope.state,id: timestamp,
-                            postalCode:$scope.postalCode,id: timestamp,
+                            city:$scope.city,
+                            state:$scope.state,
+                            postalCode:$scope.postalCode,
                             jobType:$scope.selectedType
 });
         // SETTING VARIABLE TO EMPTY TEXT AND ARRAYS AFTER SUBMITTING DATA
