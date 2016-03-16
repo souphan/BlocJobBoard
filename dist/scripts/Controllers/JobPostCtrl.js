@@ -4,15 +4,10 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', '$http', functio
     
     // TOGGLE RADIO BUTTON TO SHOW ADDRESS
     $scope.myVar = false;
-    $scope.myVarTwo = false;
     $scope.toggle = function() {
         $scope.myVar = !$scope.myVar;
     };
-    
-    $scope.toggleTwo = function() {
-    $scope.myVarTwo = !$scope.myVarTwo;
-    };
-    
+
     $scope.search = {};
    
     // SETTING VARIABLE FOR EMPTY TEXT INPUT

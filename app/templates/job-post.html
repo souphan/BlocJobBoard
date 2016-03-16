@@ -41,7 +41,7 @@
        
        <!--RADIO BUTTON THAT PASSES IN JOB TYPE WHEN CLICKED-->
        <div class="col-md-6">
-           <label for="jobTypes" class="control-label">Job Type</label>{{selectedType | json}}<br>    
+           <label for="jobTypes" class="control-label">Job Type</label><br>    
                 <div ng-repeat="job in jobTypes">
                     <input type="radio" 
                            ng-value="job.type" 
@@ -75,6 +75,7 @@
                              placeholder="42424"
                              ng-pattern-err-type="postalCode"> Postal Code<br>
                     </p>
+            
                 <!--RADIO INPUT FOR REMOTE-->
                 <input type="radio"> Remote<br>
         </div>
@@ -91,33 +92,25 @@
                    ng-pattern-err-type="jobDescription"
                    required="required"><br>
         </div>
-        <div class="row">
+        
+        <!--JOB SEARCH-->
+        <div class="row row-search">
             <div class ="col-md-6">
                 <form class="form-inline well well-sm">
                     <span class="glyphicon glyphicon-search"></span>
 
                     <div class="form-group">
                         <input type="text"
-                               class="form-control"
+                               class="form-control input-lg"
                                id="job"
-                               ng-model="search.jobTitle"
+                               ng-model="search.$"
                                placeholder="Search job...">
                     </div>
-
-                    <div class="form-group">
-                        <input type="text"
-                               class="form-control"
-                               id="type"
-                               ng-model="search.companyName"
-                               placeholder="Search company...">
-
-                    </div>
-
+                    
                 </form>
             </div>
         </div>
         
-        <pre>{{search}}</pre>
         <!--BUTTON FOR SUBMITTING VALID JOB INFORMATION-->
         <div class="post">
             <button class="btn btn-primary" 
@@ -131,19 +124,17 @@
                    value="View Job Postings">
         </div>
         
-<!--        DATA BINDING WITH JSON FILTERS-->
-<!--        <pre>{{theForm | json}}</pre>-->
     <!--TABLE FORMAT FOR JOB LISTINGS BEING RETRIEVED-->    
     <table class="table table-bordered">
         <thead>
             <th>Job Title</th>
             <th>Company Name</th>
-            <th>Job Description(or URL)</th>
+            <th>Job URL</th>
             <th>Job Type</th>
         </thead>
         
-        <!--RETRIEVES DATA FROM FIREBASE USING NG-REPEAT DIRECTIVE-->  
-        <tbody ng-repeat="job in myData">
+        <!--RETRIEVES DATA FROM FIREBASE USING NG-REPEAT DIRECTIVE | SEARCH | ORDERING-->  
+        <tbody ng-repeat="job in myData | filter:search | orderBy:'jobTitle'">
         
         <tr>
             <td>{{job.jobTitle}}</td>

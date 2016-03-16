@@ -2,13 +2,32 @@
 <navi-menu></navi-menu>
 <div class="container">
     
-<!--BACK BUTTON FOR JOB-POST TEMPLATE PAGE-->      
-<h2>Job Postings Here</h2>
-<input class="btn btn-primary" 
+<h2>Job Postings</h2>
+    
+    <!--BACK BUTTON FOR JOB-POST TEMPLATE PAGE-->  
+    <input class="btn btn-primary" 
        type="submit" 
        ui-sref="job-post" 
        value="Back to Post">
+    
+        <!--JOB SEARCH-->
+        <div class="row row-search">
+            <div class ="col-md-6">
+                <form class="form-inline well well-sm">
+                    <span class="glyphicon glyphicon-search"></span>
 
+                    <div class="form-group">
+                        <input type="text"
+                               class="form-control input-lg"
+                               id="job"
+                               ng-model="search.$"
+                               placeholder="Search job...">
+                    </div>
+            
+                </form>
+            </div>
+        </div>
+    
     <!--VERBOSE JOB POSTINGS-->
     <table class="table table-bordered">
     
@@ -31,7 +50,7 @@
         </thead>
         
         <!--RETRIEVES DATA FROM FIREBASE USING NG-REPEAT DIRECTIVE-->  
-        <tbody ng-repeat="job in myData">
+        <tbody ng-repeat="job in myData | filter:search | orderBy:'jobTitle'">
         
         <tr>
             <td>{{job.jobTitle}}</td>
