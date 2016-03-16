@@ -3,7 +3,6 @@ blocJobs.controller('mainCtrl', ['$scope', '$http', 'Auth', function($scope, $ht
   // LISTENS FOR CHANGES IN AUTHENTICATION STATE
   Auth.$onAuth(function(authData) {
     $scope.authData = authData;
-    console.log(authData)
   });
 
   // LOGS IN A USER WITH GITHUB
