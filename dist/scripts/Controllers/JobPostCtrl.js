@@ -13,12 +13,6 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', '$http', functio
     $scope.myVarTwo = !$scope.myVarTwo;
     };
     
-    $scope.formModel = {};
-    
-    $scope.onSubmit = function() {
-            console.log("Job submitted");
-            console.log($scope.formModel);  
-    
 //        $http.post('https://minmax-server.herokuapp.com/register/', $scope.formModel).
 //            success(function (data) {
 //            console.log("=D")
@@ -26,7 +20,6 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', '$http', functio
 //            console.log("=(")
 //        });
    
-    };
     // SETTING VARIABLE FOR EMPTY TEXT INPUT
     $scope.jobTitle = "";
     $scope.companyName = "";
@@ -76,11 +69,6 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', '$http', functio
                             state:$scope.state,id: timestamp,
                             postalCode:$scope.postalCode,id: timestamp,
                             jobType:$scope.selectedType
-//                            fullTime:$scope.fullTime,
-//                            partTime:$scope.partTime,
-//                            contract:$scope.contract,
-//                            freelance:$scope.freelance,
-//                            internship:$scope.internship
 });
         // SETTING VARIABLE TO EMPTY TEXT AND ARRAYS AFTER SUBMITTING DATA
         $scope.jobTitle = "";
@@ -91,14 +79,9 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', '$http', functio
         $scope.state = "";
         $scope.postalCode = "";
         $scope.jobType = [];
-//        $scope.fullTime = "Full Time";
-//        $scope.partTime = "Part Time";
-//        $scope.contract = "Contract";
-//        $scope.freelance = "Freelance";
-//        $scope.internship = "Internship";
     };
     
-    // REFRESH DIGEST CYCLE WITH $APPLY SERVICE
+// REFRESH DIGEST CYCLE WITH $APPLY SERVICE
 //    $scope.myData.on('value', function(snapshot) {
 //        $scope.jobs = snapshot.val();
 //        $scope.$apply();
