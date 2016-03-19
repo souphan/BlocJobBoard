@@ -7,7 +7,14 @@
     <div class="form-group">
         <!--TEXT INPUT FOR JOB TITLE-->
         <div class="col-md-6">
-            <label for="jobTitle" class="control-label">Job Title</label>
+            <label for="jobTitle" class="control-label">
+                <thead ng-style="{
+                        'background-color': '#2DA6D1' 
+                        }">
+                <th  ng-style="{
+                        'background-color': '#2DA6D1' 
+                        }">Job Title</th>
+                </thead></label>
             <input class="form-control input-lg" 
                    type="text"
                    ng-model="jobTitle"
@@ -126,7 +133,9 @@
         
     <!--TABLE FORMAT FOR JOB LISTINGS BEING RETRIEVED-->    
     <table class="table table-bordered">
-        <thead>
+        <thead ng-style="{
+                        'background-color': '#20669B' 
+                        }">
             <th>Job Title</th>
             <th>Company Name</th>
             <th>Job URL</th>
@@ -134,7 +143,11 @@
         </thead>
         
         <!--RETRIEVES DATA FROM FIREBASE USING NG-REPEAT DIRECTIVE | SEARCH | ORDERING-->  
-        <tbody ng-repeat="job in myData | filter:search | orderBy:'jobTitle'">
+        <tbody ng-repeat="job in myData | filter:search | orderBy:'jobTitle'"
+               ng-style="{
+                         'background-color':$index == selectedIndex ? 'lightgray' : ''
+                         }"
+               ng-click="selectJob($index)">
         
         <tr>
             <td>{{job.jobTitle}}</td>
@@ -149,6 +162,6 @@
     </div>
    </form>
 </div>
-<div ui-view></div>
+
 <!--
 -->

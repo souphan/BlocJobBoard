@@ -9,6 +9,12 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', '$http', functio
     };
 
     $scope.search = {};
+    
+    $scope.selectedIndex = null;
+    
+    $scope.selectJob = function (index) {
+        $scope.selectedIndex = index;  
+    };
    
     // SETTING VARIABLE FOR EMPTY TEXT INPUT
     $scope.jobTitle = "";

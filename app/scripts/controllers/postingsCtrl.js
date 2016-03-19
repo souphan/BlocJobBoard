@@ -1,6 +1,11 @@
 blocJobs.controller('postingsCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {      
 
-
+    $scope.selectedIndex = null;
+    
+    $scope.selectJob = function (index) {
+        $scope.selectedIndex = index;  
+    };
+   
     $scope.currentPage = 0; //SETTING PAGE START INDEXING POINT
     $scope.pageSize = 5;
 //    $scope.jobType = []; //.push is for regular arrays/objects you need to use synchronised arrays/objects with angular
