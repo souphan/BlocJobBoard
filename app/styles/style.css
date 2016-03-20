@@ -21,6 +21,12 @@ wrapper {
 table thead {
     color: #f2f2f2;
 }
+label {
+    color:white;
+}
+.panel-body {
+    background-color: #20669B;
+}
 body, .btn-primary {
     background-color: #f2f2f2;
     font-family: 'Open Sans';
@@ -37,10 +43,21 @@ body, .btn-primary {
     font-size: 20px;
 }
 .btn-primary {
-    background-color: #F15A24;  
+    background-color: #F15A24;
+    border-color: #D2E1EF;
+}
+.btn-remove {
+    background-color: #20669B;
+}
+.btn-danger {
+    border-color: #D6D5D5;
 }
 .post {
     clear: both;
+}
+td a {
+  color:inherit;
+  text-decoration: none;
 }
 img {
   margin-bottom: 10px;

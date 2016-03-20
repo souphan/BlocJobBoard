@@ -55,16 +55,16 @@
             </thead>
 
             <!--RETRIEVES DATA FROM FIREBASE USING NG-REPEAT DIRECTIVE-->  
-            <tbody ng-repeat="job in myData | filter:search | orderBy:'jobTitle'"
-                   ng-style="{
-                             'background-color':$index == selectedIndex ? 'lightgray' : ''
-                             }"
-                   ng-click="selectJob($index)">
-
+            <tbody ng-repeat="job in myData| startFrom:(currentPage - 1) * numPerPage | limitTo:pageSize | filter:search | orderBy:'jobTitle'" 
+               ng-style="{
+                         'background-color':$index == selectedIndex ? '#F15A24' : '',
+                         'color':$index == selectedIndex ? 'white' : ''
+                         }"
+               ng-click="selectJob($index)">
             <tr>
                 <td>{{job.jobTitle}}</td>
                 <td>{{job.companyName}}</td>
-                <td>{{job.jobDescription}}</td>
+                <td><a href="">{{job.jobDescription}}</a></td>
                 <td>{{job.jobType}}</td>
     <!--
                 <td>{{job.partTime}}</td>
@@ -80,16 +80,20 @@
                 <td>{{job.postalCode}}</td>
 
                 <td>
-                  <!--BUTTON TO REMOVE DATA FROM PAGE AND FIREBASE DB-->  
-                  <a class="btn btn-danger"
+                  <!--BUTTON TO REMOVE DATA FROM PAGE AND FIREBASE DB-->
+                  <a class="btn btn-danger btn-remove"
                      ng-click="removeJob($index, job)">
-                    <i class="glyphicon glyphicon-remove"></i> Remove
+                    <i class="glyphicon glyphicon-trash"></i> Remove
                   </a>
                 </td>
             </tr>
-
+            <pagination 
+              ng-model="currentPage"
+              total-items="myData.length"
+              items-per-page="numPerPage" 
+              boundary-links="true">
+            </pagination>
         </tbody>
-
         </table>
     <!--
         <div class="col-md-6">

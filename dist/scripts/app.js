@@ -1,5 +1,5 @@
-var blocJobs = angular.module('blocJobs', ["ui.router", "firebase", "jcs-autoValidate"]); //"jcs-autoValidate"
-
+var blocJobs = angular.module('blocJobs', ["ui.router", "firebase", "jcs-autoValidate", "ui.bootstrap"]);
+// FORM VALIDATION CUSTOM MESSAGES
 blocJobs.run(function (defaultErrorMessageResolver) {
     defaultErrorMessageResolver.getErrorMessages().then(function (errorMessages) {
         errorMessages['jobTitle'] = 'Job title can only contain numbers and letters';
@@ -11,7 +11,7 @@ blocJobs.run(function (defaultErrorMessageResolver) {
 
 blocJobs.config(function($stateProvider, $urlRouterProvider){
     
-    // For any unmatched url, send to /route1
+    // FOR ANY UNMATCHED URL SEND TO /landing
     $urlRouterProvider.otherwise("/")
 
     $stateProvider
@@ -36,6 +36,13 @@ blocJobs.config(function($stateProvider, $urlRouterProvider){
 blocJobs.factory("Auth", function($firebaseAuth) {
   var ref = new Firebase("https://keodo-todo-list.firebaseio.com");
   return $firebaseAuth(ref);
+});
+
+// FILTER JOBS USING PAGINATION BY SLICING THROUGH INDEX
+blocJobs.filter('startFrom', function() {
+    return function(data, start){
+        return data.slice(start);
+    }
 });
 
 // navi-menu DIRECTIVE USED FOR EACH TEMPLATE

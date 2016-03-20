@@ -8,13 +8,10 @@
         <!--TEXT INPUT FOR JOB TITLE-->
         <div class="col-md-6">
             <label for="jobTitle" class="control-label">
-                <thead ng-style="{
-                        'background-color': '#2DA6D1' 
-                        }">
-                <th  ng-style="{
-                        'background-color': '#2DA6D1' 
-                        }">Job Title</th>
-                </thead></label>
+                <div class="panel panel-default">
+                    <div class="panel-body">Job Title</div>
+                </div>
+            </label>
             <input class="form-control input-lg" 
                    type="text"
                    ng-model="jobTitle"
@@ -24,18 +21,15 @@
                    ng-pattern-err-type="jobTitle"
                    required="required"
                    name="jobTitle">
-        
-            <!--VALIDATION BEFORE AUTO-VALIDATE-->
-<!--
-            <p class="help-block" ng-show="theForm.jobTitle.$error.required && (!theForm.$pristine || theForm.$submitted)">
-                This field is required
-            </p>
--->           
         </div>
         
         <!--TEXT INPUT FOR COMPANY NAME-->
         <div class="col-md-6">
-            <label for="companyName" class="control-label">Company Name</label>
+            <label for="companyName" class="control-label">
+                <div class="panel panel-default">
+                    <div class="panel-body">Company Name</div>
+                </div>
+            </label>
             <input class="form-control input-lg" 
                    type="text" 
                    ng-model="companyName"
@@ -48,7 +42,11 @@
        
        <!--RADIO BUTTON THAT PASSES IN JOB TYPE WHEN CLICKED-->
        <div class="col-md-6">
-           <label for="jobTypes" class="control-label">Job Type</label><br>    
+           <label for="jobTypes" class="control-label">
+                <div class="panel panel-default">
+                    <div class="panel-body">Job Type</div>
+                </div>
+           </label><br>    
                 <div ng-repeat="job in jobTypes">
                     <input type="radio" 
                            ng-value="job.type" 
@@ -60,7 +58,11 @@
         
         <!--RADIO BUTTON FOR LOCATION WITH TEXT INPUT DROP DOWN TOGGLE FOR LOCATION-->
         <div class="col-md-6">
-            <label for="location" class="control-label">Location</label> <br>
+            <label for="location" class="control-label">
+                <div class="panel panel-default">
+                    <div class="panel-body">Location</div>
+                </div>
+            </label> <br>
                 <input type="radio" ng-click="toggle()"> On Site<br>
                     <p ng-show="myVar">
                       <input type=text 
@@ -89,7 +91,11 @@
         
         <!--TEXT INPUT FOR JOB DESCRIPTION-->
         <div class="col-md-6">
-            <label for="jobDescription" class="control-label">Job Description(or URL)</label>
+            <label for="jobDescription" class="control-label">
+                <div class="panel panel-default">
+                    <div class="panel-body">Job Description(or URL)</div>
+                </div>
+            </label>
             <input class="form-control input-lg" 
                    type="text"
                    ng-model="jobDescription"
@@ -138,25 +144,32 @@
                         }">
             <th>Job Title</th>
             <th>Company Name</th>
-            <th>Job URL</th>
+            <th>Job Description(or URL)</th>
             <th>Job Type</th>
         </thead>
         
         <!--RETRIEVES DATA FROM FIREBASE USING NG-REPEAT DIRECTIVE | SEARCH | ORDERING-->  
-        <tbody ng-repeat="job in myData | filter:search | orderBy:'jobTitle'"
+        <tbody ng-repeat="job in myData| startFrom:(currentPage - 1) * numPerPage | limitTo:pageSize | filter:search | orderBy:'jobTitle'" 
                ng-style="{
-                         'background-color':$index == selectedIndex ? 'lightgray' : ''
+                         'background-color':$index == selectedIndex ? '#F15A24' : '',
+                         'color':$index == selectedIndex ? 'white' : ''
                          }"
                ng-click="selectJob($index)">
         
         <tr>
             <td>{{job.jobTitle}}</td>
             <td>{{job.companyName}}</td>
-            <td>{{job.jobDescription}}</td>
+            <td><a href="">{{job.jobDescription}}</a></td>
             <td>{{job.jobType}}</td>
         </tr>
-    
-    </tbody>
+        </tbody>
+        
+        <pagination 
+          ng-model="currentPage"
+          total-items="myData.length"
+          items-per-page="numPerPage" 
+          boundary-links="true">
+        </pagination>
         
     </table>
     </div>
