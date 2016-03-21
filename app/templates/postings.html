@@ -36,6 +36,9 @@
             </pagination>
         </div>
         
+                    <label for="jobTitle" class="control-label">
+                        Click on a job for more details
+                    </label>
 
         <!--VERBOSE JOB POSTINGS-->
         <div class ="col-md-12">
@@ -65,7 +68,7 @@
                 </div>
 
                     <!--RETRIEVES DATA FROM FIREBASE USING NG-REPEAT DIRECTIVE-->  
-                    <tbody ng-repeat="job in myData| startFrom:(currentPage - 1) * numPerPage | limitTo:pageSize | filter:search | orderBy:'jobTitle'" 
+                    <tbody ng-repeat="job in myData| startFrom:(currentPage - 1) * numPerPage | limitTo:numPerPage | filter:search | orderBy:'jobTitle'" 
                        ng-style="{
                                  'background-color':$index == selectedIndex ? '#F15A24' : '',
                                  'color':$index == selectedIndex ? 'white' : ''

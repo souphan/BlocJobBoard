@@ -113,6 +113,7 @@
                     type="submit">
                 Post <span class="glyphicon glyphicon-ok"></span>
             </button>
+            
             <!--VIEW VERBOSE JOB LISTINGS-->
             <input class="btn btn-primary" 
                    type="submit" 
@@ -160,7 +161,7 @@
         </div>
         
         <!--RETRIEVES DATA FROM FIREBASE USING NG-REPEAT DIRECTIVE | SEARCH | ORDERING-->
-        <tbody ng-repeat="job in myData| startFrom:(currentPage - 1) * numPerPage | limitTo:pageSize | filter:search | orderBy:'jobTitle'" 
+        <tbody ng-repeat="job in myData| startFrom:(currentPage - 1) * numPerPage | limitTo:numPerPage | filter:search | orderBy:'jobTitle'" 
                ng-style="{
                          'background-color':$index == selectedIndex ? '#F15A24' : '',
                          'color':$index == selectedIndex ? 'white' : ''
