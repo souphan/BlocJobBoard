@@ -5,6 +5,7 @@
     <form ng-submit="saveJobs()"
           novalidate="novalidate">
     <div class="form-group">
+        
         <!--TEXT INPUT FOR JOB TITLE-->
         <div class="col-md-6">
             <label for="jobTitle" class="control-label">
@@ -106,26 +107,8 @@
                    required="required"><br>
         </div>
         
-        <!--JOB SEARCH-->
-        <div class="row row-search">
-            <div class ="col-md-6">
-                <form class="form-inline well well-sm">
-                    <span class="glyphicon glyphicon-search"></span>
-
-                    <div class="form-group">
-                        <input type="text"
-                               class="form-control input-lg"
-                               id="job"
-                               ng-model="search.$"
-                               placeholder="Search job...">
-                    </div>
-                    
-                </form>
-            </div>
-        </div>
-        
         <!--BUTTON FOR SUBMITTING VALID JOB INFORMATION-->
-        <div class="post">
+        <div class ="col-md-6">
             <button class="btn btn-primary" 
                     type="submit">
                 Post <span class="glyphicon glyphicon-ok"></span>
@@ -134,28 +117,55 @@
             <input class="btn btn-primary" 
                    type="submit" 
                    ui-sref="postings" 
-                   value="View Job Postings">
+                   value="View Job Postings">   
+        </div>
+                
+        <!--JOB SEARCH-->
+        <div class ="col-md-6">
+            <form class="form-inline well well-sm">
+                <span class="glyphicon glyphicon-search"></span>
+
+                <div class="form-group">
+                    <input type="text"
+                           class="form-control input-lg"
+                           id="job"
+                           ng-model="search.$"
+                           placeholder="Search job...">
+                </div>
+            </form>
         </div>
         
-    <!--TABLE FORMAT FOR JOB LISTINGS BEING RETRIEVED-->    
-    <table class="table table-bordered">
-        <thead ng-style="{
-                        'background-color': '#20669B' 
-                        }">
-            <th>Job Title</th>
-            <th>Company Name</th>
-            <th>Job Description(or URL)</th>
-            <th>Job Type</th>
-        </thead>
+        <!--PAGINATE THROUGH JOBS-->
+        <div class ="col-md-6">
+            <pagination 
+              ng-model="currentPage"
+              total-items="myData.length"
+              items-per-page="numPerPage" 
+              boundary-links="true">
+            </pagination>
+        </div>
         
-        <!--RETRIEVES DATA FROM FIREBASE USING NG-REPEAT DIRECTIVE | SEARCH | ORDERING-->  
+    <!--TABLE FORMAT FOR JOB LISTINGS BEING RETRIEVED-->
+    <div class ="col-md-12">
+    <table class="table table-bordered">
+        <div class ="col-md-6">
+            <thead ng-style="{
+                            'background-color': '#20669B' 
+                            }">
+                <th>Job Title</th>
+                <th>Company Name</th>
+                <th>Job Description(or URL)</th>
+                <th>Job Type</th>
+            </thead>
+        </div>
+        
+        <!--RETRIEVES DATA FROM FIREBASE USING NG-REPEAT DIRECTIVE | SEARCH | ORDERING-->
         <tbody ng-repeat="job in myData| startFrom:(currentPage - 1) * numPerPage | limitTo:pageSize | filter:search | orderBy:'jobTitle'" 
                ng-style="{
                          'background-color':$index == selectedIndex ? '#F15A24' : '',
                          'color':$index == selectedIndex ? 'white' : ''
                          }"
                ng-click="selectJob($index)">
-        
         <tr>
             <td>{{job.jobTitle}}</td>
             <td>{{job.companyName}}</td>
@@ -163,15 +173,8 @@
             <td>{{job.jobType}}</td>
         </tr>
         </tbody>
-        
-        <pagination 
-          ng-model="currentPage"
-          total-items="myData.length"
-          items-per-page="numPerPage" 
-          boundary-links="true">
-        </pagination>
-        
     </table>
+    </div>
     </div>
    </form>
 </div>

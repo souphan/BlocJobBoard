@@ -53,7 +53,7 @@ body, .btn-primary {
     border-color: #D6D5D5;
 }
 .post {
-    clear: both;
+    display:inline;
 }
 td a {
   color:inherit;
