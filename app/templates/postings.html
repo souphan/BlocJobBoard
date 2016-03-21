@@ -1,74 +1,117 @@
 <!--NAVIGATION MENU-->
 <navi-menu></navi-menu>
+
 <div class="container">
-    
-<!--BACK BUTTON FOR JOB-POST TEMPLATE PAGE-->      
-<h2>Job Postings Here</h2>
-<input class="btn btn-primary" 
-       type="submit" 
-       ui-sref="job-post" 
-       value="Back to Post">
+    <form>
+    <div class="form-group">
+        
+        <!--BACK BUTTON FOR JOB-POST TEMPLATE PAGE-->  
+        <div class ="col-md-12">
+            <input class="btn btn-primary" 
+               type="submit" 
+               ui-sref="job-post" 
+               value="Back to Post">
+        </div>
+        
+        <!--JOB SEARCH-->
+        <div class ="col-md-6">
+            <form class="form-inline well well-sm">
+                <span class="glyphicon glyphicon-search"></span>
 
-    <!--VERBOSE JOB POSTINGS-->
-    <table class="table table-bordered">
-    
-        <thead>
-            <th>Job Title</th>
-            <th>Company Name</th>
-            <th>Job Description(or URL)</th>
-            <th>Job Type</th>
-<!--
-            <th>Job Type</th>
-            <th>Job Type</th>
-            <th>Job Type</th>
-            <th>Job Type</th>
--->
-            <th>Street</th>
-            <th>City</th>
-            <th>State</th>
-            <th>Postal</th>
-            <th>Remove Job</th>
-        </thead>
-        
-        <!--RETRIEVES DATA FROM FIREBASE USING NG-REPEAT DIRECTIVE-->  
-        <tbody ng-repeat="job in myData">
-        
-        <tr>
-            <td>{{job.jobTitle}}</td>
-            <td>{{job.companyName}}</td>
-            <td>{{job.jobDescription}}</td>
-            <td>{{job.jobType}}</td>
-<!--
-            <td>{{job.partTime}}</td>
-            <td>{{job.contract}}</td>
+                <div class="form-group">
+                    <input type="text"
+                           class="form-control input-lg"
+                           id="job"
+                           ng-model="search.$"
+                           placeholder="Search job...">
+                </div>
+            </form>
             
-            <td>{{job.freelance}}</td>
-            <td>{{job.internship}}</td>
-            
--->
-            <td>{{job.streetAddress}}</td>
-            <td>{{job.city}}</td>
-            <td>{{job.state}}</td>
-            <td>{{job.postalCode}}</td>
+            <!--PAGINATE THROUGH JOBS-->
+            <pagination 
+              ng-model="currentPage"
+              total-items="myData.length"
+              items-per-page="numPerPage" 
+              boundary-links="true">
+            </pagination>
+        </div>
         
-            <td>
-              <!--BUTTON TO REMOVE DATA FROM PAGE AND FIREBASE DB-->  
-              <a class="btn btn-danger"
-                 ng-click="removeJob($index, job)">
-                <i class="glyphicon glyphicon-remove"></i> Remove
-              </a>
-            </td>
-        </tr>
-    
-    </tbody>
-        
-    </table>
-<!--
-    <div class="col-md-6">
+                    <label for="jobTitle" class="control-label">
+                        Click on a job for more details
+                    </label>
 
-        TODO LABEL
-        <span>{{job.jobTitle}}</span>
-    </div>
+        <!--VERBOSE JOB POSTINGS-->
+        <div class ="col-md-12">
+            <table class="table table-bordered">
+                <div class ="col-md-6">
+                    <thead ng-style="{
+                                    'background-color': '#20669B' 
+                                    }">
+                        <th>Job Title</th>
+                        <th>Company Name</th>
+                        <th>Job Description(or URL)</th>
+                        <th>Job Type</th>
+            <!--
+                        <th>Job Type</th>
+                        <th>Job Type</th>
+                        <th>Job Type</th>
+                        <th>Job Type</th>
+            -->
+<!--
+                        <th>Street</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Postal</th>
 -->
-    
+                        <th>Remove Job</th>
+                    </thead>
+                </div>
+
+                    <!--RETRIEVES DATA FROM FIREBASE USING NG-REPEAT DIRECTIVE-->  
+                    <tbody ng-repeat="job in myData| startFrom:(currentPage - 1) * numPerPage | limitTo:numPerPage | filter:search | orderBy:'jobTitle'" 
+                       ng-style="{
+                                 'background-color':$index == selectedIndex ? '#F15A24' : '',
+                                 'color':$index == selectedIndex ? 'white' : ''
+                                 }"
+                       ng-click="selectJob($index)">
+                    <tr>
+                        <td>{{job.jobTitle}}</td>
+                        <td>{{job.companyName}}</td>
+                        <td><a href="">{{job.jobDescription}}</a></td>
+                        <td>{{job.jobType}}</td>
+            <!--
+                        <td>{{job.partTime}}</td>
+                        <td>{{job.contract}}</td>
+
+                        <td>{{job.freelance}}</td>
+                        <td>{{job.internship}}</td>
+
+            -->
+<!--
+                        <td>{{job.streetAddress}}</td>
+                        <td>{{job.city}}</td>
+                        <td>{{job.state}}</td>
+                        <td>{{job.postalCode}}</td>
+-->
+
+                        <td>
+                          <!--BUTTON TO REMOVE DATA FROM PAGE AND FIREBASE DB-->
+                          <a class="btn btn-danger btn-remove"
+                             ng-click="removeJob($index, job)">
+                            <i class="glyphicon glyphicon-trash"></i> Remove
+                          </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    <!--
+        <div class="col-md-6">
+
+            TODO LABEL
+            <span>{{job.jobTitle}}</span>
+        </div>
+    -->
     </div>
+    </form>
+</div>

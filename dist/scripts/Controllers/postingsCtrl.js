@@ -1,8 +1,16 @@
 blocJobs.controller('postingsCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {      
-
-
-    $scope.currentPage = 0; //SETTING PAGE START INDEXING POINT
-    $scope.pageSize = 5;
+    
+    // SELECTED JOB INDEX HIGHLIGHTED WHEN CLICKED
+    $scope.selectedIndex = null;
+    
+    $scope.selectJob = function (index) {
+        $scope.selectedIndex = index;  
+    };
+    
+    //SETTING PAGE START INDEXING POINT
+    $scope.currentPage = 1;
+    $scope.numPerPage = 8;
+    
 //    $scope.jobType = []; //.push is for regular arrays/objects you need to use synchronised arrays/objects with angular
     
     $scope.myData = $firebaseArray(new Firebase('https://keodo-todo-list.firebaseio.com/Jobs'));
