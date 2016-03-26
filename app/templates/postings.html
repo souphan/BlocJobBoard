@@ -36,9 +36,9 @@
             </pagination>
         </div>
         
-                    <label for="jobTitle" class="control-label">
-                        Click on a job for more details
-                    </label>
+                <div class="panel panel-default">
+                    <div class="panel-body panel-job" id="control-label">Click on a job for more details</div>
+                </div>
 
         <!--VERBOSE JOB POSTINGS-->
         <div class="row">
@@ -47,7 +47,6 @@
                     <thead ng-style="{
                                     'background-color': '#20669B' 
                                     }">
-                        <th>#</th>
                         <th>Job Title</th>
                         <th>Company Name</th>
                         <th>Remove Job</th>
@@ -61,7 +60,6 @@
                                  'color':$index == selectedIndex ? 'white' : ''
                                  }"
                        ng-click="selectJob(job, $index)">
-                        <td>{{$index}}</td>
                         <td>{{job.jobTitle}}</td>
                         <td>{{job.companyName}}</td>
                         <td>
@@ -77,10 +75,8 @@
         </div>
             
         <div class="col-md-4">
-            <div class="table table-bordered">
-                <label for="jobTitle" class="control-label">
-                    <div class="panel-job">Job Details</div>
-            </label>
+            <div class="panel panel-default">
+                <div class="panel-heading" id="panel-jobs"> Job Details</div>
                 <div class="panel-body">
                     <dl>
                         <dt>Job Title</dt>
