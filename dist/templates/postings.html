@@ -41,59 +41,29 @@
                     </label>
 
         <!--VERBOSE JOB POSTINGS-->
-        <div class ="col-md-12">
+        <div class="row">
+        <div class ="col-md-8">
             <table class="table table-bordered">
-                <div class ="col-md-6">
                     <thead ng-style="{
                                     'background-color': '#20669B' 
                                     }">
+                        <th>#</th>
                         <th>Job Title</th>
                         <th>Company Name</th>
-                        <th>Job Description(or URL)</th>
-                        <th>Job Type</th>
-            <!--
-                        <th>Job Type</th>
-                        <th>Job Type</th>
-                        <th>Job Type</th>
-                        <th>Job Type</th>
-            -->
-<!--
-                        <th>Street</th>
-                        <th>City</th>
-                        <th>State</th>
-                        <th>Postal</th>
--->
                         <th>Remove Job</th>
                     </thead>
-                </div>
 
                     <!--RETRIEVES DATA FROM FIREBASE USING NG-REPEAT DIRECTIVE-->  
-                    <tbody ng-repeat="job in myData| startFrom:(currentPage - 1) * numPerPage | limitTo:numPerPage | filter:search | orderBy:'jobTitle'" 
+                    <tbody>
+                    <tr ng-repeat="job in myData| startFrom:(currentPage - 1) * numPerPage | limitTo:numPerPage | filter:search | orderBy:'jobTitle'" 
                        ng-style="{
                                  'background-color':$index == selectedIndex ? '#F15A24' : '',
                                  'color':$index == selectedIndex ? 'white' : ''
                                  }"
-                       ng-click="selectJob($index)">
-                    <tr>
+                       ng-click="selectJob(job, $index)">
+                        <td>{{$index}}</td>
                         <td>{{job.jobTitle}}</td>
                         <td>{{job.companyName}}</td>
-                        <td><a href="">{{job.jobDescription}}</a></td>
-                        <td>{{job.jobType}}</td>
-            <!--
-                        <td>{{job.partTime}}</td>
-                        <td>{{job.contract}}</td>
-
-                        <td>{{job.freelance}}</td>
-                        <td>{{job.internship}}</td>
-
-            -->
-<!--
-                        <td>{{job.streetAddress}}</td>
-                        <td>{{job.city}}</td>
-                        <td>{{job.state}}</td>
-                        <td>{{job.postalCode}}</td>
--->
-
                         <td>
                           <!--BUTTON TO REMOVE DATA FROM PAGE AND FIREBASE DB-->
                           <a class="btn btn-danger btn-remove"
@@ -105,13 +75,36 @@
                 </tbody>
             </table>
         </div>
-    <!--
-        <div class="col-md-6">
-
-            TODO LABEL
-            <span>{{job.jobTitle}}</span>
+            
+        <div class="col-md-4">
+            <div class="table table-bordered">
+                <label for="jobTitle" class="control-label">
+                    <div class="panel-job">Job Details</div>
+            </label>
+                <div class="panel-body">
+                    <dl>
+                        <dt>Job Title</dt>
+                        <dd>{{selectedJob.jobTitle}}</dd>
+                        <dt>Job Description(or URL)</dt>
+                        <dd>{{selectedJob.jobDescription}}</dd>
+                        <dt>Company Name</dt>
+                        <dd>{{selectedJob.companyName}}</dd>
+                        <dt>Job Type</dt>
+                        <dd>{{selectedJob.jobType}}</dd>
+                        <dt>Street</dt>
+                        <dd>{{selectedJob.streetAddress}}</dd>
+                        <dt>City</dt>
+                        <dd>{{selectedJob.city}}</dd>
+                        <dt>State</dt>
+                        <dd>{{selectedJob.state}}</dd>
+                        <dt>Postal</dt>
+                        <dd>{{selectedJob.postalCode}}</dd>
+                    </dl>
+                </div>
+            </div>
         </div>
-    -->
+    </div>
+        
     </div>
     </form>
 </div>

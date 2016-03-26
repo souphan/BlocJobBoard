@@ -2,9 +2,11 @@ blocJobs.controller('postingsCtrl', ['$scope', '$firebaseArray', function($scope
     
     // SELECTED JOB INDEX HIGHLIGHTED WHEN CLICKED
     $scope.selectedIndex = null;
+    $scope.selectedJob = null;
     
-    $scope.selectJob = function (index) {
-        $scope.selectedIndex = index;  
+    $scope.selectJob = function (job, index) {
+        $scope.selectedIndex = index; 
+        $scope.selectedJob = job;
     };
     
     //SETTING PAGE START INDEXING POINT
