@@ -24,7 +24,7 @@ table thead {
 label {
     color:white;
 }
-.panel-body {
+.panel-job{
     background-color: #20669B;
 }
 body, .btn-primary {
@@ -66,9 +66,30 @@ img {
 .help-block {
     display: inline;
 }
-.row-search {
+#control-label {
+    text-align:center;
+    clear:both;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
 }
-.row-search-posts {
+#panel-jobs {
+    background-color: #20669B;
+    color: #f2f2f2;
+    font-size: 20px;
+    font-weight: bold;
+    text-align:center;
+}
+.panel {
+    background-color: #f2f2f2;
+}
+.panel-default {
+    border-color: #f2f2f2;
+}
+.panel-default dt{
+    color:white;
+    background-color: #20669B;
+    text-align: center;
 }
 /*background: #f2f2f2
 #333333
