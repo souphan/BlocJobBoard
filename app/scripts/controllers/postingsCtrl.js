@@ -1,4 +1,4 @@
-blocJobs.controller('postingsCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {      
+blocJobs.controller('postingsCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
     
     // SELECTED JOB INDEX HIGHLIGHTED WHEN CLICKED
     $scope.selectedIndex = null;
@@ -27,6 +27,5 @@ blocJobs.controller('postingsCtrl', ['$scope', '$firebaseArray', function($scope
         $scope.myData.$remove(job);
 
     };  
-
    
 }]);
