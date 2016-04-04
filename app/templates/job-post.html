@@ -37,8 +37,8 @@
                    ng-pattern="/^[a-zA-Z][a-zA-Z0-9-_\.\s]{1,30}$/"
                    id="companyName"
                    placeholder="Orange"
-                   ng-pattern-err-type="companyName">
-                   <!--required="required"--><br>
+                   ng-pattern-err-type="companyName"
+                   required="required"><br>
         </div>
        
        <!--RADIO BUTTON THAT PASSES IN JOB TYPE WHEN CLICKED-->
@@ -51,7 +51,7 @@
                 <div ng-repeat="job in jobTypes">
                     <input type="radio" 
                            ng-value="job.type" 
-                           ng-model="$parent.selectedType" />
+                           ng-model="$parent.selectedType"/>
                     {{job.type}}
                 </div>
                 <hr/>
@@ -64,12 +64,9 @@
                     <div class="panel-body panel-job">Location</div>
                 </div>
             </label> <br>
+            
                 <input type="radio" ng-click="toggle()"> On Site<br>
                     <p ng-show="myVar">
-                      <input type=text 
-                             id="streeAddress" 
-                             ng-model="streeAddress" 
-                             placeholder="Silicon Prarie Street"> Street Address<br>
                       <input type=text 
                              id="city" 
                              ng-model="city" 
@@ -86,8 +83,13 @@
                              ng-pattern-err-type="postalCode"> Postal Code<br>
                     </p>
             
-                <!--RADIO INPUT FOR REMOTE-->
-                <input type="radio"> Remote<br>
+                <div ng-repeat="job in jobLocation">
+                    <input type="radio" 
+                           ng-value="job.location" 
+                           ng-model="$parent.selectedLocation"/>
+                    {{job.location}}
+                </div>
+            
         </div>
         
         <!--TEXT INPUT FOR JOB DESCRIPTION-->

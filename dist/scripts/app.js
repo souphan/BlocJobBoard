@@ -1,4 +1,5 @@
-var blocJobs = angular.module('blocJobs', ["ui.router", "firebase", "jcs-autoValidate", "ui.bootstrap"]);
+var blocJobs = angular.module('blocJobs', ["ui.router", "firebase", "jcs-autoValidate", "ngAnimate", "ui.bootstrap"]);
+
 // FORM VALIDATION CUSTOM MESSAGES
 blocJobs.run(function (defaultErrorMessageResolver) {
     defaultErrorMessageResolver.getErrorMessages().then(function (errorMessages) {
