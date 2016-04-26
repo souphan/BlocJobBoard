@@ -1,13 +1,28 @@
 <!--NAVIGATION MENU-->
 <!--<navi-menu></navi-menu>-->
 
-<h1 class="welcome">Welcome to Bloc's job board</h1>
+<div class="panel panel-default">
+    <div class="panel-body panel-job" id="control-label">Welcome to Bloc's job board</div>
+</div>
 
     <!-- LOGIN PANEL -->
     <div class="panel" ng-hide="authData">
       <!-- LOGIN BUTTON -->
-      <button ng-click="login()">Login With GitHub</button>
+      <button ng-click="login()">Login With GitHub</button> GH works
+      <button ng-click="authenticate('facebook')">Sign in with Facebook</button> FB does not work =[
     </div>
+<!--
+<button ng-click="authenticate('google')">Sign in with Google</button>
+<button ng-click="authenticate('github')">Sign in with GitHub</button>
+<button ng-click="authenticate('linkedin')">Sign in with LinkedIn</button>
+<button ng-click="authenticate('instagram')">Sign in with Instagram</button>
+<button ng-click="authenticate('twitter')">Sign in with Twitter</button>
+<button ng-click="authenticate('foursquare')">Sign in with Foursquare</button>
+<button ng-click="authenticate('yahoo')">Sign in with Yahoo</button>
+<button ng-click="authenticate('live')">Sign in with Windows Live</button>
+<button ng-click="authenticate('twitch')">Sign in with Twitch</button>
+<button ng-click="authenticate('bitbucket')">Sign in with Bitbucket</button>
+-->
 
     <!-- ACCOUNT PANEL -->
     <div class="panel" ng-show="authData">
@@ -59,7 +74,7 @@
 
         <!--VERBOSE JOB POSTINGS-->
         <div class="row">
-        <div class ="col-md-8">
+        <div class ="col-md-6">
             <table class="table table-bordered">
                     <thead ng-style="{
                                     'background-color': '#20669B' 
@@ -83,7 +98,7 @@
             </table>
         </div>
             
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading" id="panel-jobs"> Job Details</div>
                 <div class="panel-body">

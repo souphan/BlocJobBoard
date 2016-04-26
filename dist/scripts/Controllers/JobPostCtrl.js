@@ -23,7 +23,7 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', '$http', functio
     $scope.jobTypes = [];
     $scope.jobLocation = [];
     
-    // INCLUDING RADIO BUTTON JOB TYPE TO BE ADDED IN FIRBASE
+    // INCLUDING CHECKBOX BUTTON JOB TYPE TO BE ADDED IN FIRBASE
     $scope.jobTypes.push({type:"Frontend"});
     $scope.jobTypes.push({type:"Backend"});
     $scope.jobTypes.push({type:"Design"});

@@ -1,5 +1,5 @@
 // CONTROLLER WITH REUSABLE AUTH FACTORY
-blocJobs.controller('mainCtrl', ['$scope', '$http', 'Auth', '$firebaseArray', function($scope, $http, Auth, $firebaseArray) { 
+blocJobs.controller('mainCtrl', ['$scope', '$http', 'Auth', '$firebaseArray', '$auth', function($scope, $http, Auth, $firebaseArray, $auth) { 
   
     // SELECTED JOB INDEX HIGHLIGHTED WHEN CLICKED
     $scope.selectedIndex = null;
@@ -15,18 +15,11 @@ blocJobs.controller('mainCtrl', ['$scope', '$http', 'Auth', '$firebaseArray', fu
     $scope.numPerPage = 8;
     
     $scope.myData = $firebaseArray(new Firebase('https://keodo-todo-list.firebaseio.com/Jobs'));
-    
-    // REMOVE JOB ITEM METHOD
-    $scope.removeJob = function (index, job) {
-  
-        // CHECK THAT JOB IS VALID
-        if (job.id === undefined)return;
-
-        // FIREBASE: REMOVE JOB FROM LIST
-        $scope.myData.$remove(job);
-
-    };  
      
+    $scope.authenticate = function(provider) {
+      $auth.authenticate(provider);
+    };
+    
       // LISTENS FOR CHANGES IN AUTHENTICATION STATE
       Auth.$onAuth(function(authData) {
         $scope.authData = authData;
