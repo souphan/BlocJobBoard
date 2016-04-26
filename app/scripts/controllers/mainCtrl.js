@@ -1,20 +1,47 @@
 // CONTROLLER WITH REUSABLE AUTH FACTORY
-blocJobs.controller('mainCtrl', ['$scope', '$http', 'Auth', function($scope, $http, Auth) { 
-  // LISTENS FOR CHANGES IN AUTHENTICATION STATE
-  Auth.$onAuth(function(authData) {
-    $scope.authData = authData;
-  });
+blocJobs.controller('mainCtrl', ['$scope', '$http', 'Auth', '$firebaseArray', function($scope, $http, Auth, $firebaseArray) { 
+  
+    // SELECTED JOB INDEX HIGHLIGHTED WHEN CLICKED
+    $scope.selectedIndex = null;
+    $scope.selectedJob = null;
+    
+    $scope.selectJob = function (job, index) {
+        $scope.selectedIndex = index; 
+        $scope.selectedJob = job;
+    };
+    
+    //SETTING PAGE START INDEXING POINT
+    $scope.currentPage = 1;
+    $scope.numPerPage = 8;
+    
+    $scope.myData = $firebaseArray(new Firebase('https://keodo-todo-list.firebaseio.com/Jobs'));
+    
+    // REMOVE JOB ITEM METHOD
+    $scope.removeJob = function (index, job) {
+  
+        // CHECK THAT JOB IS VALID
+        if (job.id === undefined)return;
 
-  // LOGS IN A USER WITH GITHUB
-  $scope.login = function() {
-    Auth.$authWithOAuthPopup("github").catch(function(error) {
-      console.error("Error authenticating with GitHub:", error);
-    });
-  };
+        // FIREBASE: REMOVE JOB FROM LIST
+        $scope.myData.$remove(job);
 
-  // LOGS OUT THE USER
-  $scope.logout = function() {
-    Auth.$unauth();
-  };
+    };  
+     
+      // LISTENS FOR CHANGES IN AUTHENTICATION STATE
+      Auth.$onAuth(function(authData) {
+        $scope.authData = authData;
+      });
+
+      // LOGS IN A USER WITH GITHUB
+      $scope.login = function() {
+        Auth.$authWithOAuthPopup("github").catch(function(error) {
+          console.error("Error authenticating with GitHub:", error);
+        });
+      };
+
+      // LOGS OUT THE USER
+      $scope.logout = function() {
+        Auth.$unauth();
+      };
 
 }]);

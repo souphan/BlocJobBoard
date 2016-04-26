@@ -1,5 +1,7 @@
 <!--NAVIGATION MENU-->
-<navi-menu></navi-menu>
+<!--<navi-menu></navi-menu>-->
+
+<h1 class="welcome">Welcome to Bloc's job board</h1>
 
     <!-- LOGIN PANEL -->
     <div class="panel" ng-hide="authData">
@@ -22,5 +24,90 @@
 
 <div class="container">
 </div>
+
+<div class="container">
+    <form>
+    <div class="form-group">
+        
+
+        <!--JOB SEARCH-->
+        <div class ="col-md-6">
+            <form class="form-inline well well-sm">
+                <span class="glyphicon glyphicon-search"></span>
+
+                <div class="form-group">
+                    <input type="text"
+                           class="form-control input-lg"
+                           id="job"
+                           ng-model="search.$"
+                           placeholder="Search job...">
+                </div>
+            </form>
+            
+            <!--PAGINATE THROUGH JOBS-->
+            <pagination 
+              ng-model="currentPage"
+              total-items="myData.length"
+              items-per-page="numPerPage" 
+              boundary-links="true">
+            </pagination>
+        </div>
+        
+                <div class="panel panel-default">
+                    <div class="panel-body panel-job" id="control-label">Click on a job for more details</div>
+                </div>
+
+        <!--VERBOSE JOB POSTINGS-->
+        <div class="row">
+        <div class ="col-md-8">
+            <table class="table table-bordered">
+                    <thead ng-style="{
+                                    'background-color': '#20669B' 
+                                    }">
+                        <th>Job Title</th>
+                        <th>Company Name</th>
+                    </thead>
+
+                    <!--RETRIEVES DATA FROM FIREBASE USING NG-REPEAT DIRECTIVE-->  
+                    <tbody>
+                    <tr ng-repeat="job in myData| startFrom:(currentPage - 1) * numPerPage | limitTo:numPerPage | filter:search | orderBy:'jobTitle'" 
+                       ng-style="{
+                                 'background-color':$index == selectedIndex ? '#F15A24' : '',
+                                 'color':$index == selectedIndex ? 'white' : ''
+                                 }"
+                       ng-click="selectJob(job, $index)">
+                        <td>{{job.jobTitle}}</td>
+                        <td>{{job.companyName}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+            
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading" id="panel-jobs"> Job Details</div>
+                <div class="panel-body">
+                    <dl>
+                        <dt>Job Title</dt>
+                        <dd>{{selectedJob.jobTitle}}</dd>
+                        <dt>Job Description(or URL)</dt>
+                        <dd>{{selectedJob.jobDescription}}</dd>
+<!--                        http://stackoverflow.com/questions/18095727/limit-the-length-of-a-string-with-angularjs-->
+                        <dt>Company Name</dt>
+                        <dd>{{selectedJob.companyName}}</dd>
+                        <dt>Job Type</dt>
+                        <dd>{{selectedJob.jobType}}</dd>
+                        <dt>Location</dt>
+                        <dd>{{selectedJob.jobLocation}}</dd>
+                        <dt>City</dt>
+                        <dd>{{selectedJob.city}}</dd>
+                        <dt>State</dt>
+                        <dd>{{selectedJob.state}}</dd>
+                        <dt>Postal</dt>
+                        <dd>{{selectedJob.postalCode}}</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
 
 <div ui-view></div>
