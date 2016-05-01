@@ -1,4 +1,5 @@
-var blocJobs = angular.module('blocJobs', ["ui.router", "firebase", "jcs-autoValidate", "ui.bootstrap"]);
+var blocJobs = angular.module('blocJobs', ["ui.router", "firebase", "jcs-autoValidate", "ngAnimate", "ui.bootstrap", "satellizer"]);
+
 // FORM VALIDATION CUSTOM MESSAGES
 blocJobs.run(function (defaultErrorMessageResolver) {
     defaultErrorMessageResolver.getErrorMessages().then(function (errorMessages) {
@@ -31,6 +32,146 @@ blocJobs.config(function($stateProvider, $urlRouterProvider){
         templateUrl: "/templates/postings.html"
     })
 })
+
+blocJobs.config(function($authProvider) {
+    $authProvider.facebook({
+      clientId: 'Facebook App ID'
+    });
+
+    // Optional: For client-side use (Implicit Grant), set responseType to 'token'
+    $authProvider.facebook({
+      clientId: 'Facebook App ID',
+      responseType: 'token'
+    });
+
+    $authProvider.google({
+      clientId: 'Google Client ID'
+    });
+
+    $authProvider.github({
+      clientId: 'GitHub Client ID'
+    });
+
+    $authProvider.linkedin({
+      clientId: 'LinkedIn Client ID'
+    });
+
+    $authProvider.instagram({
+      clientId: 'Instagram Client ID'
+    });
+
+    $authProvider.yahoo({
+      clientId: 'Yahoo Client ID / Consumer Key'
+    });
+
+    $authProvider.live({
+      clientId: 'Microsoft Client ID'
+    });
+
+    $authProvider.twitch({
+      clientId: 'Twitch Client ID'
+    });
+
+    $authProvider.bitbucket({
+      clientId: 'Bitbucket Client ID'
+    });
+
+    // No additional setup required for Twitter
+
+    $authProvider.oauth2({
+      name: 'foursquare',
+      url: '/auth/foursquare',
+      clientId: 'Foursquare Client ID',
+      redirectUri: window.location.origin,
+      authorizationEndpoint: 'https://foursquare.com/oauth2/authenticate',
+    });
+    
+$authProvider.httpInterceptor = function() { return true; },
+$authProvider.withCredentials = true;
+$authProvider.tokenRoot = null;
+$authProvider.baseUrl = '/';
+$authProvider.loginUrl = '/auth/login';
+$authProvider.signupUrl = '/auth/signup';
+$authProvider.unlinkUrl = '/auth/unlink/';
+$authProvider.tokenName = 'token';
+$authProvider.tokenPrefix = 'satellizer';
+$authProvider.authHeader = 'Authorization';
+$authProvider.authToken = 'Bearer';
+$authProvider.storageType = 'localStorage';
+
+// Facebook
+$authProvider.facebook({
+  name: 'facebook',
+  url: '/auth/facebook',
+  authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
+  redirectUri: window.location.origin + '/',
+  requiredUrlParams: ['display', 'scope'],
+  scope: ['email'],
+  scopeDelimiter: ',',
+  display: 'popup',
+  type: '2.0',
+  popupOptions: { width: 580, height: 400 }
+});
+
+// Google
+$authProvider.google({
+  url: '/auth/google',
+  authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
+  redirectUri: window.location.origin,
+  requiredUrlParams: ['scope'],
+  optionalUrlParams: ['display'],
+  scope: ['profile', 'email'],
+  scopePrefix: 'openid',
+  scopeDelimiter: ' ',
+  display: 'popup',
+  type: '2.0',
+  popupOptions: { width: 452, height: 633 }
+});
+
+// Generic OAuth 2.0
+$authProvider.oauth2({
+  name: null,
+  url: null,
+  clientId: null,
+  redirectUri: null,
+  authorizationEndpoint: null,
+  defaultUrlParams: ['response_type', 'client_id', 'redirect_uri'],
+  requiredUrlParams: null,
+  optionalUrlParams: null,
+  scope: null,
+  scopePrefix: null,
+  scopeDelimiter: null,
+  state: null,
+  type: null,
+  popupOptions: null,
+  responseType: 'code',
+  responseParams: {
+    code: 'code',
+    clientId: 'clientId',
+    redirectUri: 'redirectUri'
+  }
+});
+
+// Generic OAuth 1.0
+$authProvider.oauth1({
+  name: null,
+  url: null,
+  authorizationEndpoint: null,
+  redirectUri: null,
+  type: null,
+  popupOptions: null
+});
+    // NO ADDITIONAL SETUP REQUIRED FOR TWITTER
+    $authProvider.oauth2({
+      name: 'foursquare',
+      url: '/auth/foursquare',
+      clientId: 'Foursquare Client ID',
+      redirectUri: window.location.origin,
+      authorizationEndpoint: 'https://foursquare.com/oauth2/authenticate',
+    });
+});
+
+
 
 // RE-USABLE FACTORY THAT GENERATES THE $firebaseAuth INSTANCE
 blocJobs.factory("Auth", function($firebaseAuth) {

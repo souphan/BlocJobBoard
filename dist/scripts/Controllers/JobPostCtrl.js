@@ -17,20 +17,29 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', '$http', functio
     $scope.jobTitle = "";
     $scope.companyName = "";
     $scope.jobDescription = "";
-    $scope.streetAddress = "";
     $scope.city = "";
     $scope.state = "";
     $scope.postalCode = "";
-    $scope.jobTypes = []; //.push is for regular arrays/objects you need to use synchronised arrays/objects with angular
+    $scope.jobTypes = [];
+    $scope.jobLocation = [];
     
-    // INCLUDING RADIO BUTTON JOB TYPE TO BE ADDED IN FIRBASE
-    $scope.jobTypes.push({type:"Full Time"});
-    $scope.jobTypes.push({type:"Part Time"});
-    $scope.jobTypes.push({type:"Contract"});
-    $scope.jobTypes.push({type:"Freelance"});
-    $scope.jobTypes.push({type:"Internship"});
-    $scope.selectedType = $scope.jobTypes[0].type;
+    // INCLUDING CHECKBOX BUTTON JOB TYPE TO BE ADDED IN FIRBASE
+    $scope.jobTypes.push({type:"Frontend"});
+    $scope.jobTypes.push({type:"Backend"});
+    $scope.jobTypes.push({type:"Design"});
+    $scope.jobTypes.push({type:"IOS"});
+    $scope.jobTypes.push({type:"Android"});
+    $scope.selectedType = $scope.jobTypes.type;
     
+    // INCLUDING RADIO BUTTON JOB LOCATION TO BE ADDED IN FIRBASE
+    $scope.jobLocation.push({location:"Remote"});
+    $scope.selectedLocation = $scope.jobLocation.location;
+    
+//    if ($scope.selectedLocation == $scope.jobLocation[0].location) {
+//        return $scope.toggle();
+//    };
+    
+    //SETTING PAGE START INDEXING POINT
     $scope.currentPage = 1;
     $scope.numPerPage = 5;
 
@@ -40,24 +49,25 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', '$http', functio
     $scope.saveJobs = function() {
         // CREATE A UNIQUE ID
         var timestamp = new Date().valueOf();
-        $scope.myData.$add({jobTitle:$scope.jobTitle,id: timestamp,
+        $scope.myData.$add({id: timestamp, 
+                            jobTitle:$scope.jobTitle,
                             companyName:$scope.companyName,
                             jobDescription:$scope.jobDescription,
-                            streetAddress:$scope.streetAddress,
                             city:$scope.city,
                             state:$scope.state,
                             postalCode:$scope.postalCode,
-                            jobType:$scope.selectedType
+                            jobType:$scope.selectedType,
+                            jobLocation:$scope.selectedLocation
 });
         // SETTING VARIABLE TO EMPTY TEXT AND ARRAYS AFTER SUBMITTING DATA
         $scope.jobTitle = "";
         $scope.companyName = "";
         $scope.jobDescription = "";
-        $scope.streetAddress = "";
         $scope.city = "";
         $scope.state = "";
         $scope.postalCode = "";
         $scope.jobType = [];
+        $scope.jobLocation = [];
     };
     
     
