@@ -1,5 +1,8 @@
 <!--NAVIGATION MENU-->
 <!--<navi-menu></navi-menu>-->
+<div class="panel panel-default">
+    <div class="panel-body panel-job" id="control-label-background">Post a friendly job =D</div>
+</div>
 
 <div class="container">
     <form ng-submit="saveJobs()"
@@ -41,7 +44,23 @@
                    required="required"><br>
         </div>
        
-       <!--CHECKBOX BUTTON THAT PASSES IN JOB TYPE WHEN CLICKED-->
+       <!--CHECKBOX BUTTON THAT PASSES IN JOB CATEGORY WHEN CLICKED-->
+       <div class="col-md-6">
+           <label for="jobTypes" class="control-label">
+                <div class="panel panel-default">
+                    <div class="panel-body panel-job">Job Category</div>
+                </div>
+           </label><br>    
+                <div ng-repeat="job in jobCategory">
+                    <input type="radio" 
+                           ng-value="job.category" 
+                           ng-model="$parent.selectedCategory"/>
+                    {{job.category}}
+                </div>
+                <hr/>
+        </div>
+        
+               <!--CHECKBOX BUTTON THAT PASSES IN JOB CATEGORY WHEN CLICKED-->
        <div class="col-md-6">
            <label for="jobTypes" class="control-label">
                 <div class="panel panel-default">
@@ -56,6 +75,7 @@
                 </div>
                 <hr/>
         </div>
+        
         
         <!--RADIO BUTTON FOR LOCATION WITH TEXT INPUT DROP DOWN TOGGLE FOR LOCATION-->
         <div class="col-md-6">
