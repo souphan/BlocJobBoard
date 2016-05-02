@@ -22,13 +22,22 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', '$http', functio
     $scope.postalCode = "";
     $scope.jobTypes = [];
     $scope.jobLocation = [];
+    $scope.jobCategory = [];
     
     // INCLUDING CHECKBOX BUTTON JOB TYPE TO BE ADDED IN FIRBASE
-    $scope.jobTypes.push({type:"Frontend"});
-    $scope.jobTypes.push({type:"Backend"});
-    $scope.jobTypes.push({type:"Design"});
-    $scope.jobTypes.push({type:"IOS"});
-    $scope.jobTypes.push({type:"Android"});
+    $scope.jobCategory.push({category:"Frontend"});
+    $scope.jobCategory.push({category:"Backend"});
+    $scope.jobCategory.push({category:"Design"});
+    $scope.jobCategory.push({category:"IOS"});
+    $scope.jobCategory.push({category:"Android"});
+    $scope.selectedCategory = $scope.jobCategory.category;
+    
+    // INCLUDING CHECKBOX BUTTON JOB TYPE TO BE ADDED IN FIRBASE
+    $scope.jobTypes.push({type:"Full Time"});
+    $scope.jobTypes.push({type:"Part Time"});
+    $scope.jobTypes.push({type:"Intern"});
+    $scope.jobTypes.push({type:"Contract"});
+    $scope.jobTypes.push({type:"Apprenticeship"});
     $scope.selectedType = $scope.jobTypes.type;
     
     // INCLUDING RADIO BUTTON JOB LOCATION TO BE ADDED IN FIRBASE
@@ -56,7 +65,8 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', '$http', functio
                             city:$scope.city,
                             state:$scope.state,
                             postalCode:$scope.postalCode,
-                            jobType:$scope.selectedType,
+                            jobCategory:$scope.selectedCategory,
+                            jobTypes:$scope.selectedType,
                             jobLocation:$scope.selectedLocation
 });
         // SETTING VARIABLE TO EMPTY TEXT AND ARRAYS AFTER SUBMITTING DATA
@@ -67,6 +77,7 @@ blocJobs.controller('jobPostCtrl', ['$scope', '$firebaseArray', '$http', functio
         $scope.state = "";
         $scope.postalCode = "";
         $scope.jobType = [];
+        $scope.jobCategory = [];
         $scope.jobLocation = [];
     };
     

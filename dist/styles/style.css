@@ -41,6 +41,13 @@ label {
 .panel-job{
     background-color: #20669B;
 }
+#control-label-background{
+    background-color: #4d4d4d;
+    text-align:center;
+    clear:both;
+    color: white;
+    font-size: 30px;
+}
 body, .btn-primary {
     background-color: #f2f2f2;
     font-family: 'Open Sans';
@@ -85,6 +92,9 @@ img {
     clear:both;
     color: white;
     font-size: 30px;
+}
+.control-label {
+    color: white;
 }
 #panel-jobs {
     background-color: #20669B;
